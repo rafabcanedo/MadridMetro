@@ -1,13 +1,20 @@
 import { StyleSheet,View, Text } from 'react-native'
 import { theme } from '@/theme'
-import { Link } from 'expo-router'
+import { Button } from '@/components/button'
 
-export default function Home() {
+export default function Test() {
  return (
+  <>
   <View style={styles.container}>
-    <Text style={styles.text}>Madrid</Text>
-    <Link href="/test">Ir para Test</Link>
-  </View>
+    <Text style={styles.text}>Test</Text>
+    </View>
+
+    <View>
+      <Button>
+        <Button.Text>Home</Button.Text>
+      </Button>
+    </View>
+    </>
  )
 }
 
