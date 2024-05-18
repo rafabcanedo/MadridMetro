@@ -7,9 +7,7 @@ export default function Test() {
   <>
   <View style={styles.container}>
     <Text style={styles.text}>Test</Text>
-    </View>
 
-    <View>
       <Button>
         <Button.Text>Home</Button.Text>
       </Button>
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  alignItems: "center",
+  //alignItems: "center",
   backgroundColor: theme.colors.background,
  },
  text: {

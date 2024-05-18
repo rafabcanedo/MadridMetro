@@ -5,7 +5,7 @@ export const colors = {
 
  background: "#3b5998",
 
- primary: "#f8da5b",
+ primary: "#fdb44b",
 
  error: "#f95959",
 }

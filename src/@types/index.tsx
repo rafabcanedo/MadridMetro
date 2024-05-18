@@ -1,5 +1,7 @@
-import { ReactNode } from "react"
+import { LinkProps } from "expo-router/build/link/Link"
+import { ElementType, ReactNode } from "react"
 import { TouchableOpacityProps } from "react-native"
+
 
 export type ButtonProps = TouchableOpacityProps & {
     children: ReactNode
@@ -11,4 +13,8 @@ export interface ButtonTextProps {
    
 export interface ButtonIconProps {
     children: ReactNode
+}
+
+export type ButtonLinkProps = LinkProps & {
+ icon?: ElementType
 }

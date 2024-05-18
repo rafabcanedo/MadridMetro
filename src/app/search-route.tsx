@@ -1,13 +1,18 @@
 import { StyleSheet,View, Text } from 'react-native'
 import { theme } from '@/theme'
-import { Link } from 'expo-router'
+import { Button } from '@/components/button'
 
-export default function Home() {
+export default function SearchRoute() {
  return (
+  <>
   <View style={styles.container}>
-    <Text style={styles.text}>Madrid</Text>
-    <Link href="/map-metro">Ir para Test</Link>
-  </View>
+    <Text style={styles.text}>Route</Text>
+
+      <Button>
+        <Button.Text>Home</Button.Text>
+      </Button>
+    </View>
+    </>
  )
 }
 
@@ -15,7 +20,7 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  alignItems: "center",
+  //alignItems: "center",
   backgroundColor: theme.colors.background,
  },
  text: {
