@@ -6,7 +6,7 @@ export default function Home() {
  return (
   <View style={styles.container}>
     <Text style={styles.text}>Madrid</Text>
-    <Link href="/map-metro">Ir para Test</Link>
+    <Link href="/test">Ir para Test</Link>
   </View>
  )
 }

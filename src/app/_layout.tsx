@@ -2,6 +2,7 @@ import { Slot } from "expo-router";
 import { StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 import { 
  useFonts,
@@ -11,6 +12,8 @@ import {
  } from "@expo-google-fonts/roboto";
 
  SplashScreen.preventAutoHideAsync()
+
+ const queryClient = new QueryClient()
 
 export default function Layout() {
 
@@ -25,9 +28,11 @@ export default function Layout() {
  }
 
  return (
+  <QueryClientProvider client={queryClient}>
   <GestureHandlerRootView style={{ flex: 1 }}>
     <StatusBar barStyle="light-content" />
     {fontsLoaded && <Slot />}
   </GestureHandlerRootView>
+  </QueryClientProvider>
  )
 }
