@@ -1,7 +1,8 @@
-import { StyleSheet,View, Image } from 'react-native'
-import { theme } from '@/theme'
+import { StyleSheet,View, Image, TouchableOpacity, Pressable } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
 import { Cards } from '@/components/cards'
 import { HeaderHome } from '@/components/header-home'
+import { colors } from '@/theme/colors';
 
 export default function Home() {
  return (
@@ -11,6 +12,12 @@ export default function Home() {
     <Image source={require('../../../assets/images/logo.png')} style={styles.image} />
    </View>
     <Cards />
+    
+    <View style={styles.containerWarning}>
+    <TouchableOpacity style={styles.warning} activeOpacity={0.8}>
+    <AntDesign name="warning" size={30} color={colors.white} />
+    </TouchableOpacity>
+    </View>
   </View>
  )
 }
@@ -18,9 +25,10 @@ export default function Home() {
 const styles = StyleSheet.create({
  container: {
   flex: 1,
-  justifyContent: "center",
+  // justifyContent: "space-between",
   gap: 10,
-  backgroundColor: theme.colors.background,
+  paddingTop: 40,
+  backgroundColor: colors.background,
  },
  containerImage: {
   justifyContent: "center",
@@ -31,4 +39,18 @@ const styles = StyleSheet.create({
   width: 250,
   height: 150,
  },
+ containerWarning: {
+  alignItems: "flex-end",
+  justifyContent: "center",
+  marginTop: 40,
+ },
+ warning: {
+  alignItems: "center",
+  justifyContent: "center",
+  marginRight: 30,
+  backgroundColor: colors.primary,
+  width: 50,
+  height: 50,
+  borderRadius: 50,
+ }, 
 })

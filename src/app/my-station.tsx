@@ -3,17 +3,17 @@ import { theme } from '@/theme'
 import { Button } from '@/components/button'
 import { colors } from '@/theme/colors'
 
-export default function SearchRoute() {
+export default function MyStation() {
  return (
   <>
   <View style={styles.container}>
-    <Text style={styles.text}>Route</Text>
+    <Text style={styles.text}>My Station</Text>
 
       <Button>
         <Button.Text>Home</Button.Text>
       </Button>
     </View>
-    </>
+  </>
  )
 }
 

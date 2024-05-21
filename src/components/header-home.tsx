@@ -1,15 +1,15 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { colors } from "@/theme/colors";
+import { fontFamily } from "@/theme/fontFamily";
 
 export function HeaderHome() {
  return (
   <View style={styles.container}>
    <View style={styles.comunidad}>
     <Image source={require('../../assets/images/comunidadmadrid.png')} style={styles.image} />
-    <Text>Comunidad de Madrid</Text>
+    <Text style={styles.textComunidad}>Comunidad de Madrid</Text>
    </View>
-    <AntDesign name="warning" size={24} color={colors.error} />
   </View>
  )
 }
@@ -20,14 +20,20 @@ const styles = StyleSheet.create({
   height: 80,
   justifyContent: "center",
   alignItems: "center",
-  // backgroundColor: colors.error
+  flexDirection: "row",
+  paddingRight: 22,
+  backgroundColor: colors.error
  },
  comunidad: {
   flexDirection: "column",
-  alignItems: "center"
+  alignItems: "center",
  },
  image: {
   width: 50,
   height: 50,
- }, 
+ },
+ textComunidad: {
+  fontFamily: fontFamily.medium,
+  color: colors.white,
+ },
 })
