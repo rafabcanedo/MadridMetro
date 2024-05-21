@@ -1,12 +1,16 @@
-import { StyleSheet,View, Text } from 'react-native'
+import { StyleSheet,View, Image } from 'react-native'
 import { theme } from '@/theme'
-import { Link } from 'expo-router'
+import { Cards } from '@/components/cards'
+import { HeaderHome } from '@/components/header-home'
 
 export default function Home() {
  return (
   <View style={styles.container}>
-    <Text style={styles.text}>Madrid</Text>
-    <Link href="/test">Ir para Test</Link>
+    <HeaderHome />
+    <View style={styles.containerImage}>
+    <Image source={require('../../../assets/images/logo.png')} style={styles.image} />
+   </View>
+    <Cards />
   </View>
  )
 }
@@ -15,11 +19,16 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  alignItems: "center",
+  gap: 10,
   backgroundColor: theme.colors.background,
  },
- text: {
-  fontSize: 22,
-  fontFamily: theme.fontFamily.bold,
+ containerImage: {
+  justifyContent: "center",
+  alignItems: "center",
+  marginBottom: 10,
+ },
+ image: {
+  width: 250,
+  height: 150,
  },
 })
