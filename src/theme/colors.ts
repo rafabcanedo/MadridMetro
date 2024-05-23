@@ -7,5 +7,7 @@ export const colors = {
 
  primary: "#fdb44b",
 
+ input: "#dbd8e3",
+
  error: "#f95959",
 }

@@ -18,3 +18,7 @@ export interface ButtonIconProps {
 export type ButtonLinkProps = LinkProps & {
  icon?: ElementType
 }
+
+export interface PropsInput {
+ children: ReactNode
+}

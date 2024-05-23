@@ -48,7 +48,11 @@ export function Cards() {
    </View>
 
    <View style={styles.container}>
-   <TouchableOpacity style={styles.card} activeOpacity={0.5}>
+   <TouchableOpacity 
+    style={styles.card} 
+    activeOpacity={0.5}
+    
+   >
    <FontAwesome name="map-o" size={30} color={colors.white} />
    <Text style={styles.text}>Maps</Text>
    </TouchableOpacity>

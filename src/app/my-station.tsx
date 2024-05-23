@@ -2,14 +2,18 @@ import { StyleSheet,View, Text } from 'react-native'
 import { theme } from '@/theme'
 import { Button } from '@/components/button'
 import { colors } from '@/theme/colors'
+import { useLinkTo } from '@react-navigation/native'
 
 export default function MyStation() {
+
+ const linkTo = useLinkTo()
+
  return (
   <>
   <View style={styles.container}>
     <Text style={styles.text}>My Station</Text>
 
-      <Button>
+      <Button onPress={() => linkTo("/")}>
         <Button.Text>Home</Button.Text>
       </Button>
     </View>
