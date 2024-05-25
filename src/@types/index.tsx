@@ -22,3 +22,14 @@ export type ButtonLinkProps = LinkProps & {
 export interface PropsInput {
  children: ReactNode
 }
+
+export type FilterProps = {
+ filter: string
+ selected: boolean
+}
+
+export type IFilterActivedProps = {
+  filters: string[]
+  filter: string
+  onChange: (value: string) => void
+}

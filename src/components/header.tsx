@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   width: '100%',
   height: 60,
   justifyContent: "center",
+  paddingBottom: 20,
+  marginLeft: 20,
+  marginRight: 20,
   // backgroundColor: colors.error
  },
  icon: {
