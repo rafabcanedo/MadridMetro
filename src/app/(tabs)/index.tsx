@@ -1,4 +1,4 @@
-import { StyleSheet,View, Image, TouchableOpacity, Pressable } from 'react-native'
+import { StyleSheet,View, Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { Cards } from '@/components/cards'
 import { HeaderHome } from '@/components/header-home'

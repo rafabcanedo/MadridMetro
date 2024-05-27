@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { StyleSheet,View, Text, ScrollView } from 'react-native'
-import { theme } from '@/theme'
 import { Button } from '@/components/button'
-import { colors } from '@/theme/colors'
 import { useLinkTo } from '@react-navigation/native'
 import { Input } from '@/components/input'
 import { Header } from '@/components/header'
+import { colors } from '@/theme/colors'
+import { fontFamily } from '@/theme/fontFamily'
 import { Filters } from '@/components/filters/filters'
 import { FILTERS } from "@/utils/filters";
+
+import { Entypo } from '@expo/vector-icons';
 
 export default function SearchRoute() {
 
@@ -16,11 +18,11 @@ export default function SearchRoute() {
  const linkTo = useLinkTo()
 
  return (
-  <ScrollView
-   showsVerticalScrollIndicator={false}
-  >
-   <View style={styles.container}>
+    <View style={styles.container}>
     <Header href="/" />
+      <ScrollView
+       showsVerticalScrollIndicator={false}
+      >
 
     <Text style={styles.title}>Search your Route</Text>
 
@@ -38,6 +40,11 @@ export default function SearchRoute() {
     <Input>
     <Input.Field
      placeholder="Select your role"
+    />
+    <Entypo 
+     name="location-pin"
+     size={25} 
+     color={colors.primary}
     />
     </Input>
 
@@ -63,6 +70,11 @@ export default function SearchRoute() {
     <Input.Field
      placeholder="Select your role"
     />
+    <Entypo 
+     name="location-pin"
+     size={25} 
+     color={colors.primary}
+    />
     </Input>
 
     <Input>
@@ -75,8 +87,8 @@ export default function SearchRoute() {
     <Button onPress={() => linkTo("/")}>
      <Button.Text>Search Route</Button.Text>
     </Button>
-    </View>
     </ScrollView>
+    </View>
  )
 }
 
@@ -84,13 +96,13 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  backgroundColor: theme.colors.background,
+  backgroundColor: colors.background,
   padding: 12,
   paddingTop: 52,
  },
  title: {
   fontSize: 22,
-  fontFamily: theme.fontFamily.bold,
+  fontFamily: fontFamily.bold,
   color: colors.white,
   justifyContent: "center",
   alignItems: "center",
@@ -98,11 +110,11 @@ const styles = StyleSheet.create({
  },
  containerRoute: {
   borderBottomWidth: 2,
-  borderBottomColor: theme.colors.white,
+  borderBottomColor: colors.white,
   marginBottom: 14,
  },
  titleRoute: {
-  color: theme.colors.white,
+  color: colors.white,
   paddingLeft: 8,
   marginTop: 16,
  },

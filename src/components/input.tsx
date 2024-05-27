@@ -24,7 +24,7 @@ function Field({ ...rest }:TextInputProps) {
 const styles = StyleSheet.create({
  container: {
   width: "100%",
-  height: 40,
+  height: 45,
   flexDirection: "row",
   alignItems: "center",
   gap: 12,

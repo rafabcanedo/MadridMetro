@@ -5,7 +5,7 @@ export const colors = {
 
  background: "#3b5998",
 
- primary: "#fdb44b",
+ primary: "#42b883",
 
  input: "#dbd8e3",
 

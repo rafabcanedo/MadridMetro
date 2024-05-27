@@ -1,6 +1,7 @@
 import { StyleSheet,View,Image, StatusBar } from 'react-native'
-import { theme } from '@/theme'
 import { Header } from '@/components/header'
+import { colors } from '@/theme/colors'
+import { fontFamily } from '@/theme/fontFamily'
 
 export default function MapMetro() {
  return (
@@ -21,11 +22,11 @@ const styles = StyleSheet.create({
   flex: 1,
   justifyContent: "center",
   //alignItems: "center",
-  backgroundColor: theme.colors.background,
+  backgroundColor: colors.background,
  },
  text: {
   fontSize: 22,
-  fontFamily: theme.fontFamily.bold,
+  fontFamily: fontFamily.bold,
  },
  image: {
   width: 400,

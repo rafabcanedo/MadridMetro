@@ -1,8 +1,8 @@
 import { StyleSheet,View, Text } from 'react-native'
-import { theme } from '@/theme'
+import { useLinkTo } from '@react-navigation/native'
 import { Button } from '@/components/button'
 import { colors } from '@/theme/colors'
-import { useLinkTo } from '@react-navigation/native'
+import { fontFamily } from '@/theme/fontFamily'
 
 export default function MyStation() {
 
@@ -25,11 +25,11 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  backgroundColor: theme.colors.background,
+  backgroundColor: colors.background,
  },
  text: {
   fontSize: 22,
-  fontFamily: theme.fontFamily.bold,
+  fontFamily: fontFamily.bold,
   color: colors.white
  },
 })
