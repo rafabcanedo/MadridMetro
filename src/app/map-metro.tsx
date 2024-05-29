@@ -1,4 +1,4 @@
-import { StyleSheet,View,Image, StatusBar } from 'react-native'
+import { StyleSheet, View, Image, StatusBar } from 'react-native'
 import { Header } from '@/components/header'
 import { colors } from '@/theme/colors'
 import { fontFamily } from '@/theme/fontFamily'
@@ -10,7 +10,10 @@ export default function MapMetro() {
    <StatusBar barStyle="light-content" />
     <Header href="/" />
       <View>
-       <Image source={require('../../assets/images/metro.png')} style={styles.image} />
+       <Image 
+        source={require('../../assets/images/metro.png')}
+        style={styles.image}
+       />
       </View>
     </View>
     </>
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  //alignItems: "center",
+  // alignItems: "center",
   backgroundColor: colors.background,
  },
  text: {

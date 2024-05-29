@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet,View } from 'react-native'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { useLinkTo } from '@react-navigation/native'
 import MapView, { Marker } from 'react-native-maps'
 import {
@@ -10,6 +10,7 @@ import {
  LocationAccuracy
 } from 'expo-location'
 import { colors } from '@/theme/colors'
+import { AntDesign } from '@expo/vector-icons';
 
 // latitud 40.4165 longitud -3.70256
 
@@ -48,9 +49,6 @@ export default function Map() {
  return (
   <>
   <View style={styles.container}>
-
-   {
-    location &&
    <MapView
     style={styles.map}
     initialRegion={{
@@ -66,8 +64,12 @@ export default function Map() {
       longitude: -3.70256,
      }}
     />
+    <View style={styles.containerWarning}>
+    <TouchableOpacity style={styles.warning} activeOpacity={0.8}>
+    <AntDesign name="arrowleft" size={30} color={colors.white} onPress={() => linkTo("/")} />
+    </TouchableOpacity>
+    </View>
    </MapView>
-   }
   </View>
   </>
  )
@@ -84,4 +86,18 @@ const styles = StyleSheet.create({
   flex: 1,
   width: '100%',
  },
+ containerWarning: {
+  alignItems: "flex-start",
+  justifyContent: "center",
+ },
+ warning: {
+  alignItems: "center",
+  justifyContent: "center",
+  marginLeft: 30,
+  marginTop: 70,
+  backgroundColor: colors.primary,
+  width: 50,
+  height: 50,
+  borderRadius: 50,
+ }, 
 })

@@ -1,54 +1,77 @@
-import { useMemo, useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import React from "react";
+import { SafeAreaView, View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { colors } from "@/theme/colors";
-import { FontAwesome } from "@expo/vector-icons";
 import { fontFamily } from "@/theme/fontFamily";
+import { useLinkTo } from "@react-navigation/native";
 
-export function ModalMap() {
+type ModalProps = {
+ handleClose: () => void
+}
 
- const snapPoints = useMemo(() => ['25%', '50%', '70%'], []);
+export function ModalMap({ handleClose }: ModalProps) {
 
- const bottomSheetRef = useRef<BottomSheet>(null);
-
-  //const handleClosePress = () => bottomSheetRef.current?.close();
- const handleOpenPress = () => bottomSheetRef.current?.expand();
+    const linkTo = useLinkTo()
 
  return (
-  <TouchableOpacity 
-    style={styles.card} 
-    activeOpacity={0.5}
-    onPress={handleOpenPress}
-   >
-   <FontAwesome name="map-o" size={30} color={colors.white} />
-   <Text style={styles.text}>Maps</Text>
-  <View>
-   <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints}>
-    <View>
-     <Text>This is awesome!</Text>
-    </View>
-   </BottomSheet>
-  </View>
-  </TouchableOpacity>
+  <SafeAreaView style={styles.container}>
+   <TouchableOpacity 
+    style={styles.buttonModal}
+    onPress={handleClose}
+   ></TouchableOpacity>
+
+   <View style={styles.content}>
+    <TouchableOpacity
+     style={styles.actionButton}
+     activeOpacity={0.8}
+     onPress={() => linkTo("/map-metro")}
+    >
+     <Text style={styles.actionText}>Metro Map</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity
+     style={styles.actionButton}
+     activeOpacity={0.8}
+     onPress={() => linkTo("/map-turism")}
+    >
+     <Text style={styles.actionText}>Turism Map</Text>
+    </TouchableOpacity>
+   </View>
+  </SafeAreaView>
  )
 }
 
 const styles = StyleSheet.create({
  container: {
   flex: 1,
-  padding: 24,
-  backgroundColor: colors.error,
  },
- card: {
-    //alignItems: "center",
-    flexDirection: "column",
-   alignItems: "center",
-   justifyContent: "center",
-    gap: 12,
+ buttonModal: {
+  flex: 1, 
+  zIndex: 9,
  },
- text: {
-    fontFamily: fontFamily.regular,
-    fontSize: 20,
-    color: colors.white,
-   },
+ content: {
+  marginVertical: 20,
+  marginLeft: 10,
+  marginRight: 10,
+ },
+ actionButton: {
+  zIndex: 99,
+  backgroundColor: colors.primary,
+  borderRadius: 6,
+  marginTop: 8,
+  padding: 12,
+  borderWidth: 1,
+  borderColor: 'rgba(0, 0, 0, 0.2)',
+  shadowColor: 'rgba(0, 0, 0, 0.5)',
+  shadowOffset: {
+   width: 0,
+   height: 2,
+  },
+  elevation: 5,
+  shadowOpacity: 0.28,
+  shadowRadius: 4,
+ },
+ actionText: {
+  textAlign: "center",
+  fontFamily: fontFamily.medium,
+ },
 })

@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Modal 
+} from "react-native";
 import { 
   FontAwesome,
   Entypo, 
@@ -8,10 +15,13 @@ import {
 } from '@expo/vector-icons';
 import { useLinkTo } from "@react-navigation/native";
 import * as Linking from 'expo-linking'
+import { ModalMap } from "@/modals/modal-map";
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
 
 export function Cards() {
+
+ const [ visibleModal, setVisibleModal ] = useState(false);
 
  const linkTo = useLinkTo()
 
@@ -51,7 +61,7 @@ export function Cards() {
    <TouchableOpacity 
     style={styles.card} 
     activeOpacity={0.5}
-    
+    onPress={() => setVisibleModal(true)}
    >
    <FontAwesome name="map-o" size={30} color={colors.white} />
    <Text style={styles.text}>Maps</Text>
@@ -75,6 +85,17 @@ export function Cards() {
    <Text style={styles.text}>Cultural Guide</Text>
    </TouchableOpacity>
    </View>
+
+   <Modal
+    visible={visibleModal}
+    transparent={true}
+    onRequestClose={() => setVisibleModal(false)}
+    animationType="slide"
+   >
+   <ModalMap
+    handleClose={() => setVisibleModal(false)}
+   />
+   </Modal>
    </View>
  )
 }

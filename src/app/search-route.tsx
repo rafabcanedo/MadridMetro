@@ -43,7 +43,7 @@ export default function SearchRoute() {
     />
     <Entypo 
      name="location-pin"
-     size={25} 
+     size={20} 
      color={colors.primary}
     />
     </Input>
@@ -72,7 +72,7 @@ export default function SearchRoute() {
     />
     <Entypo 
      name="location-pin"
-     size={25} 
+     size={20} 
      color={colors.primary}
     />
     </Input>
