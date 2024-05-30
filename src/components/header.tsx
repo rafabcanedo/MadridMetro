@@ -6,7 +6,7 @@ import { Link } from "expo-router";
 
 export function Header({ icon, ...rest}: ButtonLinkProps) {
  return (
-  <View style={styles.container}>
+  <View style={styles.header}>
    <Link {...rest}>
    <AntDesign 
     name="arrowleft"
@@ -20,14 +20,13 @@ export function Header({ icon, ...rest}: ButtonLinkProps) {
 }
 
 const styles = StyleSheet.create({
- container: {
+ header: {
   width: '100%',
   height: 60,
   justifyContent: "center",
   paddingBottom: 20,
   marginLeft: 20,
   marginRight: 20,
-  // backgroundColor: colors.error
  },
  icon: {
   marginLeft: 10,

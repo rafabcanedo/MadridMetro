@@ -33,3 +33,7 @@ export type IFilterActivedProps = {
   filter: string
   onChange: (value: string) => void
 }
+
+export interface TitleProps {
+ title: string
+}

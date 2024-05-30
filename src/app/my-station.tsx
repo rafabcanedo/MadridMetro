@@ -1,12 +1,18 @@
+import { useEffect, useState } from 'react'
 import { StyleSheet,View, Text } from 'react-native'
 import { useLinkTo } from '@react-navigation/native'
 import { Button } from '@/components/button'
 import { colors } from '@/theme/colors'
 import { fontFamily } from '@/theme/fontFamily'
+import { fetchTest } from '@/lib/api'
 
 export default function MyStation() {
 
  const linkTo = useLinkTo()
+
+ /*useEffect(() => {
+  fetchTest();
+ }, [])*/
 
  return (
   <>

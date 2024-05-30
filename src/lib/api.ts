@@ -13,4 +13,19 @@ export const getLines = async () => {
  return result;
 }
 
+export const fetchTest = () => {
+ const url = "https://openapi.emtmadrid.es/v1/hello/";
+ const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+  },
+ };
+
+ fetch(url, options)
+ .then((response) => response.json())
+ .then((json) => console.log(json))
+ .catch((error) => console.log("error:" + error))
+}
+
 export { api }

@@ -1,10 +1,14 @@
 import { StyleSheet,View, Image, TouchableOpacity } from 'react-native'
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { useLinkTo } from '@react-navigation/native';
 import { Cards } from '@/components/cards'
 import { HeaderHome } from '@/components/header-home'
 import { colors } from '@/theme/colors';
 
 export default function Home() {
+
+ const linkTo = useLinkTo()
+
  return (
   <View style={styles.container}>
     <HeaderHome />
@@ -14,8 +18,12 @@ export default function Home() {
     <Cards />
     
     <View style={styles.containerWarning}>
-    <TouchableOpacity style={styles.warning} activeOpacity={0.8}>
-    <AntDesign name="warning" size={30} color={colors.white} />
+    <TouchableOpacity 
+     style={styles.warning} 
+     activeOpacity={0.8}
+     onPress={() => linkTo("/chat-gpt")}
+    >
+    <Ionicons name="chatbubble-ellipses-outline" size={30} color={colors.white} />
     </TouchableOpacity>
     </View>
   </View>

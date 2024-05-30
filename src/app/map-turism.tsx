@@ -7,7 +7,6 @@ export default function MapTurism() {
  return (
   <>
   <View style={styles.container}>
-   <StatusBar barStyle="light-content" />
     <Header href="/" />
       <View>
        <Image source={require('../../assets/images/turism.png')} style={styles.image} />

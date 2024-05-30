@@ -7,7 +7,6 @@ export default function MapMetro() {
  return (
   <>
   <View style={styles.container}>
-   <StatusBar barStyle="light-content" />
     <Header href="/" />
       <View>
        <Image 

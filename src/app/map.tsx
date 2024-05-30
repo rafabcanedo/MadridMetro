@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { useLinkTo } from '@react-navigation/native'
 import MapView, { Marker } from 'react-native-maps'
@@ -12,11 +12,11 @@ import {
 import { colors } from '@/theme/colors'
 import { AntDesign } from '@expo/vector-icons';
 
-// latitud 40.4165 longitud -3.70256
-
 export default function Map() {
 
- const [ location, setLocation ] = useState<LocationObject | null>(null);
+ const [ location, setLocation ] = useState<LocationObject | null>(null)
+
+ const mapRef = useRef<MapView>(null)
 
  const linkTo = useLinkTo()
 
@@ -41,8 +41,11 @@ export default function Map() {
    timeInterval: 1000,
    distanceInterval: 1
   }, (response) => {
-   console.log("Nova Localização", response)
    setLocation(response);
+   mapRef.current?.animateCamera({
+    pitch: 70,
+    center: response.coords
+   })
   });
  }, []);
 
@@ -50,6 +53,7 @@ export default function Map() {
   <>
   <View style={styles.container}>
    <MapView
+    ref={mapRef}
     style={styles.map}
     initialRegion={{
      latitude: 40.4165,
@@ -79,7 +83,6 @@ const styles = StyleSheet.create({
  container: {
   flex: 1,
   justifyContent: "center",
-  //alignItems: "center",
   backgroundColor: colors.background,
  },
  map: {

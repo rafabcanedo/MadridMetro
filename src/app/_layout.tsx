@@ -10,6 +10,7 @@ import {
  Roboto_500Medium,
  Roboto_700Bold,
  } from "@expo-google-fonts/roboto";
+import { Header } from "@/components/header";
 
  SplashScreen.preventAutoHideAsync()
 
