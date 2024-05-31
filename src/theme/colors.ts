@@ -7,6 +7,8 @@ export const colors = {
 
  primary: "#42b883",
 
+ gray: "#393e46",
+
  input: "#dbd8e3",
 
  error: "#f95959",

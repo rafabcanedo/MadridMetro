@@ -20,9 +20,9 @@ export default function SearchRoute() {
  return (
     <View style={styles.container}>
     <Header href="/" />
-      <ScrollView
-       showsVerticalScrollIndicator={false}
-      >
+    <ScrollView
+     showsVerticalScrollIndicator={false}
+    >
 
     <Text style={styles.title}>Search your Route</Text>
 
