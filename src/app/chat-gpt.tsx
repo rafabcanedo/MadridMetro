@@ -36,9 +36,9 @@ export default function ChatGpt() {
   setLoading(true)
   Keyboard.dismiss()
 
-  const prompt = `Estou em Madrid, estou localizado na estação ${location.toFixed(0)} e gostaria de ir a estação ${destine}. Quais estações eu tenho que pegar?`
+  //const prompt = `Estou em Madrid, estou localizado na estação ${location.toFixed(0)} e gostaria de ir a estação ${destine}. Quais estações eu tenho que pegar?`
 
-  fetch("https://api.openai.com/v1/chat/completions", {
+  /*fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export default function ChatGpt() {
   })
   .finally(() => {
     setLoading(false)
-  })
+  })*/
  }
 
  return (

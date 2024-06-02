@@ -84,7 +84,7 @@ export default function SearchRoute() {
     </Input>
     </View>
 
-    <Button onPress={() => linkTo("/")}>
+    <Button onPress={() => linkTo("/path")}>
      <Button.Text>Search Route</Button.Text>
     </Button>
     </ScrollView>
