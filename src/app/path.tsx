@@ -28,7 +28,14 @@ export default function Path() {
    <View style={styles.viewLines}>
     
    <View>
-    <View style={styles.viewProgress} />
+    <View style={styles.viewProgress}>
+     <View style={styles.teste}>
+     <View style={styles.circleProgress} />
+     </View>
+     <View style={styles.test1}>
+     <View style={styles.circleProgress} />
+     </View>
+    </View>
    </View>
    
    <View style={styles.actProgress}>
@@ -59,21 +66,43 @@ const styles = StyleSheet.create({
  },
  containerIcons: {
   flexDirection: "row",
+  justifyContent: "center",
   gap: 8,
+  paddingTop: 30,
   paddingBottom: 30,
  },
  viewLines: {
   flexDirection: "row",
   gap: 10,
+  marginLeft: 20,
  },
  viewProgress: {
-  width: 6,
+  width: 10,
   height: 69,
-  backgroundColor: "#7dd87d",
+  backgroundColor: "#f8da5b",
+ },
+ circleProgress: {
+  backgroundColor: "#292929",
+  width: 12,
+  height: 12,
+  borderLeftWidth: 2,
+  borderRightWidth: 2,
+  borderTopWidth: 2,
+  borderBottomWidth: 2,
+  borderColor: colors.input,
+  borderRadius: 100,
+ },
+ teste: {
+  alignItems: "center",
+  justifyContent: "center"
+ },
+ test1: {
+  alignItems: "center",
+  justifyContent: "center"
  },
  actProgress: {
   gap: 30,
-  paddingBottom: 25,
+  paddingBottom: 60,
  },
  nameLine: {
   color: colors.input,//"#A1A1A1",

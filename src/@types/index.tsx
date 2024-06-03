@@ -1,18 +1,17 @@
 import { LinkProps } from "expo-router/build/link/Link"
 import { ElementType, ReactNode } from "react"
-import { TouchableOpacityProps } from "react-native"
-
+import { PressableProps, TouchableOpacityProps } from "react-native"
 
 export type ButtonProps = TouchableOpacityProps & {
-    children: ReactNode
+ children: ReactNode
 }
 
 export interface ButtonTextProps {
-    children: ReactNode
+ children: ReactNode
 }
    
 export interface ButtonIconProps {
-    children: ReactNode
+ children: ReactNode
 }
 
 export type ButtonLinkProps = LinkProps & {
@@ -29,11 +28,16 @@ export type FilterProps = {
 }
 
 export type IFilterActivedProps = {
-  filters: string[]
-  filter: string
-  onChange: (value: string) => void
+ filters: string[]
+ filter: string
+ onChange: (value: string) => void
 }
 
 export interface TitleProps {
  title: string
+}
+
+export type CategoryProps = PressableProps & {
+ title: string
+ isSelected?: boolean
 }

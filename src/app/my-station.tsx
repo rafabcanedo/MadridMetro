@@ -10,10 +10,6 @@ export default function MyStation() {
 
  const linkTo = useLinkTo()
 
- /*useEffect(() => {
-  fetchTest();
- }, [])*/
-
  return (
   <>
   <View style={styles.container}>
