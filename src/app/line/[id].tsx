@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import { ESTACOES } from "@/lib/database/data";
+import { STATIONS } from "@/lib/database/data";
 import { useLocalSearchParams } from "expo-router";
+import { AntDesign } from '@expo/vector-icons';
+import { Button } from "@/components/button";
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
 
@@ -8,9 +10,10 @@ export default function Line() {
 
  const { id } = useLocalSearchParams()
 
- const estacao = ESTACOES.find((item) => item.id === id)
+ const estacao = STATIONS.find((item) => item.id === id)
 
  return (
+  <View style={styles.main}>
     <View style={styles.container}>
     <Text style={styles.stationTitle}>
      Line {estacao?.title}
@@ -20,24 +23,37 @@ export default function Line() {
      {estacao?.description}
     </Text>
  
-    {estacao?.linhas.map((linha) => (
+    {estacao?.stations.map((station) => (
      <Text
-      key={linha}
+      key={station}
       style={styles.linhatext}
      >
-      {linha}
+      {station}
      </Text>
     ))}
-   </View>
+  </View>
+
+    <View style={styles.containerButton}>
+      <Button>
+        <Button.Text>Add To Favorite</Button.Text>
+        <Button.Icon>
+          <AntDesign name="staro" size={20} />
+        </Button.Icon>
+      </Button>
+    </View>
+    </View>
  )
 }
 
 const styles = StyleSheet.create({
- container: {
+ main: {
   flex: 1,
   justifyContent: "center",
-  alignItems: "center",
   backgroundColor: colors.background,
+ },
+ container: {
+  justifyContent: "center",
+  alignItems: "center",
  },
  stationTitle: {
   color: colors.white,
@@ -59,5 +75,9 @@ const styles = StyleSheet.create({
   lineHeight: 24,
   marginTop: 8,
   marginBottom: 8,
+ },
+ containerButton: {
+  padding: 20,
+  paddingBottom: 32,
  },
 })

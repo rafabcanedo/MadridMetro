@@ -7,7 +7,7 @@ const METRO = [
     title: "Blue",
     number: 1,
     description: "Linha azul do metro, conhecida por ter o memorável Santiago Bernabéu...",
-    linhas: [
+    stations: [
      "Hospital Infanta Sofia",
      "Santiago Bernabéu",
      "Manuel de Falla",
@@ -25,7 +25,7 @@ const METRO = [
     title: "Red",
     number: 2,
     description: "Linha vermelha do metro, conhecida por cruzar a estacao Goya...",
-    linhas: [
+    stations: [
      "Goya",
      "Sol",
      "Opera",
@@ -43,7 +43,7 @@ const METRO = [
     title: "Yellow",
     number: 3,
     description: "Linha amarela do metro, conhecida por cruzar a praca de Espana...",
-    linhas: [
+    stations: [
      "Sol",
      "Arguelles",
      "Callao",
@@ -61,7 +61,7 @@ const METRO = [
     title: "Orange",
     number: 4,
     description: "Linha laranja do metro, conhecida por ser o metro Este...",
-    linhas: [
+    stations: [
      "Hispital del Hernares",
      "Ascao",
      "Estadio Metropolitano",
@@ -79,7 +79,7 @@ const METRO = [
     title: "Brown",
     number: 5,
     description: "Linha marrom do metro, comecando na estacao Argüelles...",
-    linhas: [
+    stations: [
      "Arguelles",
      "Goya",
      "Canillas",
@@ -97,7 +97,7 @@ const METRO = [
     title: "Green",
     number: 6,
     description: "Linha verde do metro, conhecida por cruzar a Gran Via...",
-    linhas: [
+    stations: [
      "Opera",
      "Ventas",
      "Oporto",
@@ -115,7 +115,7 @@ const METRO = [
     title: "Light Blue",
     number: 7,
     description: "Linha azul claro do metro, conhecida por cruzar a estacao Bilbao...",
-    linhas: [
+    stations: [
      "Opera",
      "Atocha",
      "La Gavia",
@@ -133,7 +133,7 @@ const METRO = [
     title: "Purple",
     number: 8,
     description: "Linha roxa do metro, conhecida por cruzar o aeropuerto...",
-    linhas: [
+    stations: [
      "Paco de Lucia",
      "Pio XII",
      "Artilleros",
@@ -150,10 +150,10 @@ const METRO = [
  },
 ]
 
-const ESTACOES = METRO.map((item) => item.data).flat()
+const STATIONS = METRO.map((item) => item.data).flat()
 
 const CATEGORIES = METRO.map((item) => item.title)
 
-type StationProps = (typeof ESTACOES)[0]
+type StationProps = (typeof STATIONS)[0]
 
-export { METRO, ESTACOES, CATEGORIES, StationProps}
+export { METRO, STATIONS, CATEGORIES, StationProps}
