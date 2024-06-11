@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import { View, Text, StyleSheet, FlatList, SectionList } from "react-native";
+import { View, Text, StyleSheet, SectionList, TouchableOpacity } from "react-native";
 import { Title } from "@/components/title";
 import { useLinkTo } from "@react-navigation/native";
 import { colors } from '@/theme/colors'
 import { fontFamily } from "@/theme/fontFamily";
 import { StationProps, METRO } from "@/lib/database/data";
-import { Link } from "expo-router";
 import { Station } from "@/components/station";
+import { Link } from "expo-router";
 
 export default function LineStops() {
 
@@ -23,7 +23,7 @@ export default function LineStops() {
      keyExtractor={(item) => item.id}
      stickySectionHeadersEnabled={false}
      renderItem={({ item }) => (
-      <Link href={`/line/${item.id}`} asChild>
+      <Link href={`/product/${item.id}`} asChild>
        <Station data={item} />
       </Link>
      )}

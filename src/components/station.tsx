@@ -17,7 +17,7 @@ export const Station = forwardRef<TouchableOpacity, StationProps>(({ data, ...re
     <Text style={styles.title}>
      {data.title}
     </Text>
-    <Text style={styles.title}>
+    <Text style={styles.number}>
      {data.number}
     </Text>
    </View>
@@ -50,17 +50,17 @@ const styles = StyleSheet.create({
   flex: 1,
   color: colors.white,
   fontFamily: fontFamily.medium,
-  fontSize: 10,
+  fontSize: 18,
  },
  number: {
   color: colors.white,
   fontFamily: fontFamily.regular,
-  fontSize: 8,
+  fontSize: 14,
  },
  description: {
   color: colors.white,
   fontFamily: fontFamily.regular,
-  lineHeight: 20,
+  lineHeight: 18,
   marginTop: 2,
  },
 })
