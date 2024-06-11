@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Header } from "@/components/header";
 import { Title } from "@/components/title";
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";

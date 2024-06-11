@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet,View, Text, ScrollView } from 'react-native'
+import { StyleSheet,View, Text, ScrollView, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { Button } from '@/components/button'
 import { useLinkTo } from '@react-navigation/native'
 import { Input } from '@/components/input'
@@ -10,14 +10,67 @@ import { Filters } from '@/components/filters/filters'
 import { FILTERS } from "@/utils/filters";
 
 import { Entypo } from '@expo/vector-icons';
+import { ActivityIndicator } from 'react-native-paper'
+
+const KEY_GPT = process.env.KEY_CHAT_GPT
 
 export default function SearchRoute() {
 
  const [ filter, setFilter ] = useState(FILTERS[0])
+ const [ location, setLocation ] = useState("")
+ const [ destine, setDestine ] = useState("")
+ const [ loading, setLoading ] = useState(false)
+ const [ travel, setTravel ] = useState("")
+
+ async function handleGenerate() {
+   if (location === "") {
+    Alert.alert("Atenção", "Preencha o campo!")
+    return
+   }
+
+   setTravel("")
+   setLoading(true)
+   Keyboard.dismiss()
+
+   const prompt = `Estou em Madrid, estou localizado na estação ${location} e gostaria de ir a estação ${destine}. Quais estações eu tenho que pegar? Me retorne só os nomes das estacoes em forma de lista`
+
+   fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${KEY_GPT}`
+      },
+      body: JSON.stringify({
+        modal: "gpt-3.5-turbo-0301",
+        messages: [
+         {
+          role: "user",
+          content: prompt,
+         }
+        ],
+        temperature: 0.20,
+        max_tokens: 500,
+        top_p: 1,
+      })
+    })
+    .then(response => response.json())
+    .then((data) => {
+     console.log(data.choices[0].message.content)
+     setTravel(data.choices[0].message.content)
+    })
+    .catch((error) => {
+     console.log(error)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+ }
  
  const linkTo = useLinkTo()
 
  return (
+   <>
+   <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
     <Header href="/" />
     <ScrollView
@@ -40,6 +93,8 @@ export default function SearchRoute() {
     <Input>
     <Input.Field
      placeholder="Select your role"
+     value={location}
+     onChangeText={(text) => setLocation(text)}
     />
     <Entypo 
      name="location-pin"
@@ -51,6 +106,8 @@ export default function SearchRoute() {
     <Input>
     <Input.Field
      placeholder="Select your destine"
+     value={destine}
+     onChangeText={(text) => setDestine(text)}
     />
     </Input>
     </View>
@@ -84,11 +141,32 @@ export default function SearchRoute() {
     </Input>
     </View>
 
-    <Button onPress={() => linkTo("/path")}>
+    <Button onPress={handleGenerate}>
      <Button.Text>Search Route</Button.Text>
     </Button>
     </ScrollView>
+
+    <ScrollView
+     style={styles.containerScroll}
+     showsVerticalScrollIndicator={false}
+    >
+    {loading && (
+      <View style={styles.content}>
+      <Text style={styles.titleContent}>Loading...</Text>
+      <ActivityIndicator color={colors.gray} size="large" />
+      </View> 
+    )}
+    {travel && (
+      <View style={styles.content}>
+       <Text style={styles.titleContent}>Content Ia 🚇</Text>
+       <Text>{travel}</Text>
+      </View>
+    )}
+
+    </ScrollView>
     </View>
+    </TouchableWithoutFeedback>
+    </>
  )
 }
 
@@ -118,4 +196,21 @@ const styles = StyleSheet.create({
   paddingLeft: 8,
   marginTop: 16,
  },
+ containerScroll: {
+   width: "90%",
+   marginTop: 8,
+  },
+  content: {
+   backgroundColor: colors.white,
+   width: "100%",
+   padding: 16,
+   marginTop: 15,
+   borderRadius: 10,
+  },
+  titleContent: {
+   fontSize: 15,
+   fontFamily: fontFamily.medium,
+   textAlign: "center",
+   marginBottom: 14,
+  },
 })
