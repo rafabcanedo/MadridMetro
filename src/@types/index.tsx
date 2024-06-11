@@ -41,3 +41,14 @@ export type CategoryProps = PressableProps & {
  title: string
  isSelected?: boolean
 }
+
+export type StationDataProps = {
+ title: string
+ number: number
+ description: string
+ linhas: string[]
+}
+
+export type StationProps = TouchableOpacityProps & {
+ data: StationDataProps
+}

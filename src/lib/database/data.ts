@@ -154,6 +154,6 @@ const ESTACOES = METRO.map((item) => item.data).flat()
 
 const CATEGORIES = METRO.map((item) => item.title)
 
-type EstacaoProps = (typeof ESTACOES)[0]
+type StationProps = (typeof ESTACOES)[0]
 
-export { METRO, ESTACOES, CATEGORIES, EstacaoProps}
+export { METRO, ESTACOES, CATEGORIES, StationProps}
