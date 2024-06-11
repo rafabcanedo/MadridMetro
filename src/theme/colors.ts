@@ -12,4 +12,20 @@ export const colors = {
  input: "#dbd8e3",
 
  error: "#f95959",
+
+ blue: "",
+ 
+ red: "",
+
+ yellow: "",
+
+ orange: "",
+
+ brown: "",
+
+ green: "",
+
+ lightBlue: "#00bbf0",
+
+ purple: "",
 }

@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import { View, Text, StyleSheet, SectionList, TouchableOpacity } from "react-native";
-import { Title } from "@/components/title";
+import { View, Text, StyleSheet, SectionList } from "react-native";
 import { useLinkTo } from "@react-navigation/native";
 import { colors } from '@/theme/colors'
 import { fontFamily } from "@/theme/fontFamily";
@@ -16,14 +15,13 @@ export default function LineStops() {
 
  return (
    <View style={styles.container}>
-    <Title title="Line Stops" />
     <SectionList
      ref={sectionListRef}
      sections={METRO}
      keyExtractor={(item) => item.id}
      stickySectionHeadersEnabled={false}
      renderItem={({ item }) => (
-      <Link href={`/product/${item.id}`} asChild>
+      <Link href={`/line/${item.id}`} asChild>
        <Station data={item} />
       </Link>
      )}
@@ -50,10 +48,10 @@ const styles = StyleSheet.create({
   color: colors.white
  },
  header: {
-  fontSize: 10,
-  color: colors.white,
-  fontFamily: fontFamily.medium,
-  marginTop: 32,
+  fontSize: 18,
+  color: colors.primary,
+  fontFamily: fontFamily.bold,
+  marginTop: 42,
   marginBottom: 12,
  },
  sectionContainer: {

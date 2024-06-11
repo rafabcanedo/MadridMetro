@@ -1,10 +1,10 @@
 const METRO = [
  {
-  title: "estacao",
+  title: "Stations",
   data: [
    {
     id: "1",
-    title: "Azul",
+    title: "Blue",
     number: 1,
     description: "Linha azul do metro, conhecida por ter o memorável Santiago Bernabéu...",
     linhas: [
@@ -22,7 +22,7 @@ const METRO = [
    },
    {
     id: "2",
-    title: "Vermelho",
+    title: "Red",
     number: 2,
     description: "Linha vermelha do metro, conhecida por cruzar a estacao Goya...",
     linhas: [
@@ -40,7 +40,7 @@ const METRO = [
    },
    {
     id: "3",
-    title: "Amarelo",
+    title: "Yellow",
     number: 3,
     description: "Linha amarela do metro, conhecida por cruzar a praca de Espana...",
     linhas: [
@@ -58,7 +58,7 @@ const METRO = [
    },
    {
     id: "4",
-    title: "Laranja",
+    title: "Orange",
     number: 4,
     description: "Linha laranja do metro, conhecida por ser o metro Este...",
     linhas: [
@@ -76,7 +76,7 @@ const METRO = [
    },
    {
     id: "5",
-    title: "Marrom",
+    title: "Brown",
     number: 5,
     description: "Linha marrom do metro, comecando na estacao Argüelles...",
     linhas: [
@@ -94,7 +94,7 @@ const METRO = [
    },
    {
     id: "6",
-    title: "verde",
+    title: "Green",
     number: 6,
     description: "Linha verde do metro, conhecida por cruzar a Gran Via...",
     linhas: [
@@ -112,7 +112,7 @@ const METRO = [
    },
    {
     id: "7",
-    title: "Azul Claro",
+    title: "Light Blue",
     number: 7,
     description: "Linha azul claro do metro, conhecida por cruzar a estacao Bilbao...",
     linhas: [
@@ -130,7 +130,7 @@ const METRO = [
    },
    {
     id: "8",
-    title: "Roxo",
+    title: "Purple",
     number: 8,
     description: "Linha roxa do metro, conhecida por cruzar o aeropuerto...",
     linhas: [

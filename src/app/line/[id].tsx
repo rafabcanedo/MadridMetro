@@ -4,49 +4,52 @@ import { useLocalSearchParams } from "expo-router";
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
 
-export default function Product() {
+export default function Line() {
 
  const { id } = useLocalSearchParams()
 
  const estacao = ESTACOES.find((item) => item.id === id)
 
  return (
-  <View style={styles.container}>
-   <Text style={styles.stationTitle}>
-    Id Line
-   </Text>
-
-   <Text style={styles.stationDescription}>
-    Description
-   </Text>
-
-   {estacao?.linhas.map((linha) => (
-    <Text
-     key={linha}
-     style={styles.linhatext}
-    >
-     {"\u2022"} {linha}
+    <View style={styles.container}>
+    <Text style={styles.stationTitle}>
+     Line {estacao?.title}
     </Text>
-   ))}
-  </View>
+ 
+    <Text style={styles.stationDescription}>
+     {estacao?.description}
+    </Text>
+ 
+    {estacao?.linhas.map((linha) => (
+     <Text
+      key={linha}
+      style={styles.linhatext}
+     >
+      {linha}
+     </Text>
+    ))}
+   </View>
  )
 }
 
 const styles = StyleSheet.create({
  container: {
   flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
   backgroundColor: colors.background,
  },
  stationTitle: {
   color: colors.white,
-  fontSize: 14,
-  fontFamily: fontFamily.medium,
+  fontSize: 18,
+  fontFamily: fontFamily.bold,
  },
  stationDescription: {
-  color: colors.white,
+  color: colors.primary,
   fontSize: 12,
   fontFamily: fontFamily.regular,
   lineHeight: 24,
+  marginTop: 10,
   marginBottom: 24,
  },
  linhatext: {
@@ -54,5 +57,7 @@ const styles = StyleSheet.create({
   fontFamily: fontFamily.regular,
   fontSize: 14,
   lineHeight: 24,
+  marginTop: 8,
+  marginBottom: 8,
  },
 })

@@ -12,7 +12,7 @@ export const Station = forwardRef<TouchableOpacity, StationProps>(({ data, ...re
    {...rest}
   >
 
-  <View style={styles.containerSecond}>
+  <View style={[styles.containerSecond, styles.shadowContainer]}>
    <View style={styles.containerTitle}>
     <Text style={styles.title}>
      {data.title}
@@ -41,6 +41,17 @@ const styles = StyleSheet.create({
  containerSecond: {
   flex: 1,
   marginLeft: 12,
+  gap: 12,
+  marginTop: 16,
+  height: 80,
+  backgroundColor: colors.background,
+  borderRadius: 10,
+ },
+ shadowContainer: {
+  shadowColor: '#171717',
+  shadowOffset: {width: -2, height: 4},
+  shadowOpacity: 0.2,
+  shadowRadius: 3,
  },
  containerTitle: {
   flexDirection: "row",
@@ -51,16 +62,19 @@ const styles = StyleSheet.create({
   color: colors.white,
   fontFamily: fontFamily.medium,
   fontSize: 18,
+  marginLeft: 6,
  },
  number: {
   color: colors.white,
   fontFamily: fontFamily.regular,
-  fontSize: 14,
+  fontSize: 16,
+  marginRight: 12,
  },
  description: {
   color: colors.white,
   fontFamily: fontFamily.regular,
   lineHeight: 18,
   marginTop: 2,
+  marginLeft: 6,
  },
 })

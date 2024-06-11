@@ -33,7 +33,6 @@ export default function Home() {
 const styles = StyleSheet.create({
  container: {
   flex: 1,
-  // justifyContent: "space-between",
   gap: 10,
   paddingTop: 40,
   backgroundColor: colors.background,
