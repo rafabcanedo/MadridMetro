@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet,View, Text, ScrollView, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet,View, Text, ScrollView, Alert, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native'
 import { Button } from '@/components/button'
 import { useLinkTo } from '@react-navigation/native'
 import { Input } from '@/components/input'
@@ -12,7 +12,7 @@ import { FILTERS } from "@/utils/filters";
 import { Entypo } from '@expo/vector-icons';
 import { ActivityIndicator } from 'react-native-paper'
 
-const KEY_GPT = process.env.KEY_CHAT_GPT
+const KEY_GPT = "sk-test-madrid-ScrqNrZqY3cFzxH1DwpJT3BlbkFJhY7o7BY8QnF9AIz6dIZW"
 
 export default function SearchRoute() {
 
@@ -41,7 +41,7 @@ export default function SearchRoute() {
         Authorization: `Bearer ${KEY_GPT}`
       },
       body: JSON.stringify({
-        modal: "gpt-3.5-turbo-0301",
+        modal: "gpt-3.5-turbo",
         messages: [
          {
           role: "user",
@@ -93,8 +93,6 @@ export default function SearchRoute() {
     <Input>
     <Input.Field
      placeholder="Select your role"
-     value={location}
-     onChangeText={(text) => setLocation(text)}
     />
     <Entypo 
      name="location-pin"
@@ -103,13 +101,14 @@ export default function SearchRoute() {
     />
     </Input>
 
-    <Input>
-    <Input.Field
-     placeholder="Select your destine"
-     value={destine}
-     onChangeText={(text) => setDestine(text)}
+    <View style={styles.containerInput}>
+    <TextInput
+     placeholder="Select your role"
+     style={styles.input}
+     value={location}
+     onChangeText={(text) => setLocation(text)}
     />
-    </Input>
+    </View>
     </View>
 
     <View style={styles.containerRoute}>
@@ -125,7 +124,7 @@ export default function SearchRoute() {
    <View style={{ marginTop: 10, gap: 10, marginBottom: 20 }}>
     <Input>
     <Input.Field
-     placeholder="Select your role"
+     placeholder="Select your destine"
     />
     <Entypo 
      name="location-pin"
@@ -134,11 +133,14 @@ export default function SearchRoute() {
     />
     </Input>
 
-    <Input>
-    <Input.Field
+    <View style={styles.containerInput}>
+    <TextInput
      placeholder="Select your destine"
+     style={styles.inputSecond}
+     value={destine}
+     onChangeText={(text) => setDestine(text)}
     />
-    </Input>
+    </View>
     </View>
 
     <Button onPress={handleGenerate}>
@@ -213,4 +215,28 @@ const styles = StyleSheet.create({
    textAlign: "center",
    marginBottom: 14,
   },
+  containerInput: {
+  width: "100%",
+  height: 45,
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 12,
+  padding: 12,
+  borderLeftWidth: 2,
+  borderRightWidth: 2,
+  borderTopWidth: 2,
+  borderBottomWidth: 2,
+  borderColor: colors.primary,
+  borderRadius: 10,
+  },
+  input: {
+    flex: 1,
+    color: colors.white,
+    fontFamily: fontFamily.regular,
+   },
+   inputSecond : {
+    flex: 1,
+    color: colors.white,
+    fontFamily: fontFamily.regular,
+   },
 })
