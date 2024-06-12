@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, SectionList } from "react-native";
 import { useLinkTo } from "@react-navigation/native";
 import { colors } from '@/theme/colors'
 import { fontFamily } from "@/theme/fontFamily";
-import { StationProps, METRO } from "@/lib/database/data";
+import { StationProps, METRO } from "@/lib/database/stations";
 import { Station } from "@/components/station";
 import { Link } from "expo-router";
 

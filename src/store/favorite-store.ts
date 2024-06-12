@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { StationProps } from "@/lib/database/data";
+import { StationProps } from "@/lib/database/stations";
 import { createJSONStorage, persist } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import * as favoriteInMemory from "./helpers/favorite-in-memory";
 
-export type StationCartProps = StationProps & {
+ export type StationCartProps = StationProps & {
   quantity: number
  }
  
@@ -16,11 +16,12 @@ export type StationCartProps = StationProps & {
   clear: () => void
  }
  
- export const useCartStore = create(
+ export const useFavoriteStore = create(
   persist<StateProps>((set) => ({
   stations: [],
   
-  add: (station: StateProps) => set((state) => ({
+  add: (station: StateProps) => 
+    set((state) => ({
      stations: favoriteInMemory.add(state.stations, station)
   })),
  

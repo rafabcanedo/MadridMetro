@@ -1,26 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import { PRODUCTS } from "@/lib/database/stations";
 import { Link, useLocalSearchParams } from "expo-router";
-import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { Button } from "@/components/button";
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
 
-import { useFavoriteStore } from "@/store/favorite-store";
-
-export default function Line() {
-
- const favoriteStore = useFavoriteStore()
+export default function Stars() {
 
  const { id } = useLocalSearchParams()
 
  const estacao = PRODUCTS.find((item) => item.id === id)
-
- function handleAddToFavorite() {
-  if (estacao) {
-    favoriteStore.add(estacao)
-  }
- }
 
  return (
   <View style={styles.main}>
@@ -44,13 +34,13 @@ export default function Line() {
   </View>
 
     <View style={styles.containerButton}>
-      <Button onPress={handleAddToFavorite}>
-      <Link href="/">
-        <Button.Text>Add To Favorite</Button.Text>
+      <Button>
+        <Link href="/">
+        <Button.Text>Remove From Favorite</Button.Text>
         <Button.Icon>
-          <AntDesign name="staro" size={20} />
+          <Feather name="x" size={20} />
         </Button.Icon>
-      </Link>
+        </Link>
       </Button>
     </View>
     </View>

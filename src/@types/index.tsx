@@ -46,7 +46,8 @@ export type StationDataProps = {
  title: string
  number: number
  description: string
- linhas: string[]
+ quantity?: number
+ // stations: []
 }
 
 export type StationProps = TouchableOpacityProps & {

@@ -1,5 +1,4 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
 import { colors } from "@/theme/colors";
 import { fontFamily } from "@/theme/fontFamily";
 
@@ -19,10 +18,9 @@ const styles = StyleSheet.create({
   width: '100%',
   height: 80,
   justifyContent: "center",
-  alignItems: "center",
+  alignContent: "center",
   flexDirection: "row",
-  paddingRight: 22,
-  backgroundColor: colors.error
+  paddingTop: 20,
  },
  comunidad: {
   flexDirection: "column",
@@ -35,5 +33,6 @@ const styles = StyleSheet.create({
  textComunidad: {
   fontFamily: fontFamily.medium,
   color: colors.white,
+  marginTop: 4,
  },
 })

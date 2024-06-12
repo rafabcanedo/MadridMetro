@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, StatusBar } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import { Header } from '@/components/header'
 import { colors } from '@/theme/colors'
 import { fontFamily } from '@/theme/fontFamily'

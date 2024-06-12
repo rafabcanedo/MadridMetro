@@ -1,12 +1,12 @@
 import { StationCartProps } from '@/store/favorite-store';
-import { StationProps } from '@/lib/database/data';
+import { StationProps } from '@/lib/database/stations';
 
 export function add(stations: StationCartProps[], newStation: StationProps) {
-  const existingFavorite = stations.find(({ id }) => newStation.id === id);
+  const existingProduct = stations.find(({ id }) => newStation.id === id);
 
-  if (existingFavorite) {
+  if (existingProduct) {
     return stations.map((station) =>
-      station.id === existingFavorite.id
+      station.id === existingProduct.id
         ? { ...station, quantity: station.quantity + 1 }
         : station,
     );
