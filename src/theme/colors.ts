@@ -5,4 +5,5 @@ export const colors = {
   shadow: '#000000',
   details: '#393E46',
   positive: '#9EEA6C',
+  blue: '#3b5998',
 };

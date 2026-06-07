@@ -58,13 +58,66 @@ The Expo Router `(tabs)` structure is kept intact and untouched. The spatial nav
 
 ## Colors & Styles
 
-> To be defined. Next topic after navigation.
+### Theme
+
+Dark theme. Fundo escuro com elementos claros de alto contraste — estética geométrica e retro-futurista.
+
+### Color Tokens
+
+| Token        | Value       | Usage                                 |
+|--------------|-------------|---------------------------------------|
+| `background` | `#111111`   | Fundo principal do app                |
+| `surface`    | `#222831`   | Cards e elementos elevados            |
+| `muted`      | `#393E46`   | Superfícies secundárias, hover        |
+| `foreground` | `#FFFFFF`   | Texto e ícones primários              |
+| `subtle`     | `#9A9A9A`   | Texto secundário, placeholders        |
+| `accent`     | `#9EEA6C`   | Destaques e estados positivos         |
+| `shadow`     | `#000000`   | Sombras e overlays                    |
+
+### Typography
+
+Duas famílias de fonte, cada uma com papel definido:
+
+| Family    | Font          | Role                                    |
+|-----------|---------------|-----------------------------------------|
+| `display` | Space Grotesk | Headings, títulos, ênfase               |
+| `sans`    | Roboto        | Body text, labels, ações                |
+
+**Variantes do componente `Text`:**
+
+| Variant      | Font          | Weight      | Usage                        |
+|--------------|---------------|-------------|------------------------------|
+| `heading`    | Space Grotesk | Bold (700)  | Título de screen             |
+| `subheading` | Space Grotesk | Medium (500)| Títulos de seção             |
+| `body`       | Roboto        | Regular (400)| Conteúdo geral              |
+| `label`      | Roboto        | Medium (500)| Botões, tags, nav labels     |
+| `caption`    | Roboto        | Regular (400)| Texto descritivo pequeno    |
 
 ---
 
 ## Components
 
 Shared UI primitives used across all screens. Each component is style-fixed — consumers only pass content and intent, never layout or style overrides.
+
+### Text
+
+Componente de tipografia central do app. Aplica font, size e weight corretos internamente baseado na variante. Consumidores nunca passam estilos diretos.
+
+**Variants:** `heading` | `subheading` | `body` | `label` | `caption`
+
+**Props:** `variant`, `children`
+
+---
+
+### Header
+
+Componente de cabeçalho exclusivo das screens secundárias (Info, Routes, Maps, My Stations). Exibe o nome da screen e um indicador de direção mostrando de onde o usuário veio — referência espacial do navegador.
+
+**Props:** `title`, `direction` (`'up' | 'down' | 'left' | 'right'`)
+
+O `direction` é mapeado para a seta correspondente: `up → ↓`, `down → ↑`, `left → →`, `right → ←` (indica o caminho de volta ao Home).
+
+---
 
 ### Button
 
