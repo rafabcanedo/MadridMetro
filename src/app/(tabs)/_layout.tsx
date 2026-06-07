@@ -1,20 +1,15 @@
-import { SymbolView } from 'expo-symbols';
 import { Link, Tabs } from 'expo-router';
-import { Platform, Pressable } from 'react-native';
+import { SymbolView } from 'expo-symbols';
+import { Pressable } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { theme } from '@/theme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
+        tabBarActiveTintColor: theme.colors.primary,
         headerShown: useClientOnlyValue(false, true),
       }}>
       <Tabs.Screen
@@ -23,11 +18,7 @@ export default function TabLayout() {
           title: 'Tab One',
           tabBarIcon: ({ color }) => (
             <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
+              name={{ ios: 'chevron.left.forwardslash.chevron.right', android: 'code', web: 'code' }}
               tintColor={color}
               size={28}
             />
@@ -39,7 +30,7 @@ export default function TabLayout() {
                   <SymbolView
                     name={{ ios: 'info.circle', android: 'info', web: 'info' }}
                     size={25}
-                    tintColor={Colors[colorScheme].text}
+                    tintColor={theme.colors.primary}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -54,11 +45,7 @@ export default function TabLayout() {
           title: 'Tab Two',
           tabBarIcon: ({ color }) => (
             <SymbolView
-              name={{
-                ios: 'chevron.left.forwardslash.chevron.right',
-                android: 'code',
-                web: 'code',
-              }}
+              name={{ ios: 'chevron.left.forwardslash.chevron.right', android: 'code', web: 'code' }}
               tintColor={color}
               size={28}
             />

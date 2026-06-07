@@ -9,20 +9,22 @@ The app uses a **spatial/positional navigator** — not a traditional Stack or T
 ### Screen Map
 
 ```
-              [ng.shop]          swipe UP
-                  ↑
-[carteira] ← [HOME] → [navegar]
-                  ↓
-            [@usuário]           swipe DOWN
+            [info]          swipe UP
+               ↑
+[maps] ← [HOME] → [my stations]
+               ↓
+           [routes]         swipe DOWN
 ```
 
 | Position | Direction | Screen |
 |----------|-----------|--------|
-| (0, 0)   | center    | Home — balance, transfer, request |
-| (0, -1)  | up        | ng.shop |
-| (0, 1)   | down      | @usuário — user profile |
-| (-1, 0)  | left      | Carteira — wallet |
-| (1, 0)   | right     | Navegar — browse |
+| (0, 0)   | center    | Home — Madrid Metro logo |
+| (0, -1)  | up        | Info |
+| (0, 1)   | down      | Routes |
+| (-1, 0)  | left      | Maps |
+| (1, 0)   | right     | My Stations |
+
+All 4 neighbor screens participate in the swipe animation. Each neighbor screen is a placeholder with only an identifying label until their content is designed.
 
 ### How it works
 
@@ -32,11 +34,9 @@ The app uses a **spatial/positional navigator** — not a traditional Stack or T
 - The gesture snaps to the nearest valid screen position
 - Invalid directions (no screen mapped) cancel the gesture and snap back
 
-### Implementation plan
+### Navigation labels
 
-1. **Phase 1 — vertical only**: up (ng.shop) and down (@usuário)
-2. **Phase 2 — horizontal**: left (Carteira) and right (Navegar)
-3. **Phase 3 — detail screens**: Stack navigation layered on top for drilling into content within any spatial screen
+The labels of all 4 neighbor screens are always visible at the edges of the Home screen — static, no animation tied to the gesture. They serve as a spatial guide for the user.
 
 ### Tech stack
 
@@ -53,6 +53,12 @@ The Expo Router `(tabs)` structure is kept intact and untouched. The spatial nav
 - Not a Stack navigator — no push/pop, no back gesture
 - Not Material Top Tabs — those only handle horizontal, one axis
 - Not a ScrollView pager — we need full gesture control and 2D movement
+
+---
+
+## Colors & Styles
+
+> To be defined. Next topic after navigation.
 
 ---
 
