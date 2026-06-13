@@ -1,12 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import { Text } from '../Text';
-
-type Direction = 'up' | 'down' | 'left' | 'right';
-
-type Props = {
-  title: string;
-  direction: Direction;
-};
+import type { Direction, HeaderProps } from '@/@types';
 
 const arrowMap: Record<Direction, string> = {
   up: '↓',
@@ -15,7 +9,7 @@ const arrowMap: Record<Direction, string> = {
   right: '←',
 };
 
-export function Header({ title, direction }: Props) {
+export function Header({ title, direction }: HeaderProps) {
   return (
     <View style={styles.container}>
       <Text variant="heading">{arrowMap[direction]}</Text>

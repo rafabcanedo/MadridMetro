@@ -1,12 +1,6 @@
 import { Text as RNText, TextStyle } from 'react-native';
 import { theme } from '@/theme';
-
-type Variant = 'heading' | 'subheading' | 'body' | 'label' | 'caption';
-
-type Props = {
-  variant?: Variant;
-  children: React.ReactNode;
-};
+import type { Variant, TextProps } from '@/@types';
 
 const variantStyles: Record<Variant, TextStyle> = {
   heading: {
@@ -31,7 +25,7 @@ const variantStyles: Record<Variant, TextStyle> = {
   },
 };
 
-export function Text({ variant = 'body', children }: Props) {
+export function Text({ variant = 'body', children }: TextProps) {
   return (
     <RNText style={[{ color: theme.colors.background }, variantStyles[variant]]}>
       {children}
