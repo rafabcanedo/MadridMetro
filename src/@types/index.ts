@@ -21,3 +21,37 @@ export interface ExternalLinkProps
   extends Omit<ComponentProps<typeof Link>, 'href'> {
   href: string;
 }
+
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonSize = 'default' | 'wide';
+
+export type ButtonProps = {
+  label: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  onPress?: () => void;
+  disabled?: boolean;
+};
+
+export type TextFieldMode = 'normal' | 'dropdown';
+
+export type DropdownItem = {
+  label: string;
+  value: string;
+};
+
+export type TextFieldProps =
+  | {
+      mode?: 'normal';
+      placeholder?: string;
+      value: string;
+      onChangeText: (text: string) => void;
+      secureTextEntry?: boolean;
+    }
+  | {
+      mode: 'dropdown';
+      placeholder?: string;
+      value: string;
+      onSelect: (item: DropdownItem) => void;
+      items: DropdownItem[];
+    };

@@ -163,3 +163,45 @@ Quatro `Text` com `variant="label"` posicionados nas bordas do Home (não animad
 
 `HomeScreen` dentro do `GestureNavigator`: logo do Madrid Metro centralizado.
 Asset disponível em `src/assets/metro.png`.
+
+---
+
+## Step 10 — Create Button component
+
+Arquivo: `src/components/Button.tsx`
+
+Props: `label`, `variant`, `size`, `onPress`, `disabled`
+
+**Color variants:**
+
+| Variant     | Background              | Text                    |
+|-------------|-------------------------|-------------------------|
+| `primary`   | `foreground` (#FFFFFF)  | `background` (#111111)  |
+| `secondary` | `surface` (#222831)     | `foreground` (#FFFFFF)  |
+| `ghost`     | transparente            | `foreground` (#FFFFFF)  |
+
+**Size variants:**
+
+| Size      | Comportamento                                                                 |
+|-----------|-------------------------------------------------------------------------------|
+| `default` | Largura pelo conteúdo + `paddingHorizontal`, `borderRadius: 100` (pill)       |
+| `wide`    | `alignSelf: 'stretch'`, `borderRadius` moderado. Pai controla espaço lateral via `paddingHorizontal` |
+
+Usa o componente `Text` internamente (`variant="label"`).
+
+---
+
+## Step 11 — Create TextField component
+
+Arquivo: `src/components/TextField.tsx`
+
+`height: 56`, `alignSelf: 'stretch'`, `borderRadius: 8`, borda `muted` (#393E46), fundo transparente.
+
+**Modos:**
+
+| Modo       | Props                                              |
+|------------|----------------------------------------------------|
+| `normal`   | `placeholder`, `value`, `onChangeText`, `secureTextEntry` |
+| `dropdown` | `placeholder`, `value`, `onSelect`, `items` (array — definido por screen) |
+
+O modo `dropdown` abre uma lista selecionável abaixo do input (não é native picker). Selecionar um item fecha a lista automaticamente. `items` são definidos por screen quando o conteúdo for especificado.

@@ -122,29 +122,32 @@ O `direction` é mapeado para a seta correspondente: `up → ↓`, `down → ↑
 
 A pressable action element with visual variants to communicate intent.
 
-**Variants (to be finalized):**
-- `primary` — main action, filled
-- `secondary` — supporting action, outlined or muted
-- `ghost` — low-emphasis, no background
-- More variants can be added as screens are designed
+**Color variants:**
+- `primary` — background `foreground` (#FFFFFF), text `background` (#111111)
+- `secondary` — background `surface` (#222831), text `foreground` (#FFFFFF)
+- `ghost` — transparent background, text `foreground` (#FFFFFF)
 
-**Props idea:** `label`, `variant`, `onPress`, `disabled`
+**Size variants:**
+- `default` — width by content + horizontal padding (pill shape)
+- `wide` — `alignSelf: 'stretch'`, estica para preencher o container. O pai controla o espaço lateral via `paddingHorizontal`
+
+**Props:** `label`, `variant`, `size`, `onPress`, `disabled`
 
 ---
 
 ### TextField
 
-Two modes under the same component:
+Two modes under the same component. `height: 56`, `alignSelf: 'stretch'`, `borderRadius: 8`, borda `muted` (#393E46), fundo transparente.
 
 #### Normal
 Standard text input. Single line, consistent styling across the app.
 
-**Props idea:** `placeholder`, `value`, `onChangeText`, `secureTextEntry`
+**Props:** `placeholder`, `value`, `onChangeText`, `secureTextEntry`
 
 #### With Dropdown Selection
 Text input that opens a selectable list of predefined options below it (not a native picker). The list of items will be defined per use case as screens are designed.
 
-**Props idea:** `placeholder`, `value`, `onSelect`, `items` (array — defined later per screen)
+**Props:** `placeholder`, `value`, `onSelect`, `items` (array — defined later per screen)
 
 ---
 
