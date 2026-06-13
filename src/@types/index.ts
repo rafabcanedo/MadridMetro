@@ -1,10 +1,12 @@
 import type { ComponentProps } from 'react';
 import { Link } from 'expo-router';
+import type { TextStyle } from 'react-native';
 
 export type Variant = 'heading' | 'subheading' | 'body' | 'label' | 'caption';
 
 export type TextProps = {
   variant?: Variant;
+  style?: TextStyle;
   children: React.ReactNode;
 };
 

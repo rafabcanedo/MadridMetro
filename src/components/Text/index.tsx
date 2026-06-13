@@ -25,9 +25,9 @@ const variantStyles: Record<Variant, TextStyle> = {
   },
 };
 
-export function Text({ variant = 'body', children }: TextProps) {
+export function Text({ variant = 'body', style, children }: TextProps) {
   return (
-    <RNText style={[{ color: theme.colors.background }, variantStyles[variant]]}>
+    <RNText style={[{ color: theme.colors.background }, variantStyles[variant], style]}>
       {children}
     </RNText>
   );
