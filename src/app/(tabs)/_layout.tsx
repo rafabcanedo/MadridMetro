@@ -2,7 +2,7 @@ import { Link, Tabs } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Pressable } from 'react-native';
 
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
 import { theme } from '@/theme';
 
 export default function TabLayout() {
@@ -18,7 +18,7 @@ export default function TabLayout() {
           title: 'Tab One',
           tabBarIcon: ({ color }) => (
             <SymbolView
-              name={{ ios: 'chevron.left.forwardslash.chevron.right', android: 'code', web: 'code' }}
+              name="chevron.left.forwardslash.chevron.right"
               tintColor={color}
               size={28}
             />
@@ -28,7 +28,7 @@ export default function TabLayout() {
               <Pressable style={{ marginRight: 15 }}>
                 {({ pressed }) => (
                   <SymbolView
-                    name={{ ios: 'info.circle', android: 'info', web: 'info' }}
+                    name="info.circle"
                     size={25}
                     tintColor={theme.colors.primary}
                     style={{ opacity: pressed ? 0.5 : 1 }}
@@ -45,7 +45,7 @@ export default function TabLayout() {
           title: 'Tab Two',
           tabBarIcon: ({ color }) => (
             <SymbolView
-              name={{ ios: 'chevron.left.forwardslash.chevron.right', android: 'code', web: 'code' }}
+              name="list.bullet"
               tintColor={color}
               size={28}
             />
