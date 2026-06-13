@@ -2,7 +2,6 @@ import { Link, Tabs } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Pressable } from 'react-native';
 
-import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
 import { theme } from '@/theme';
 
 export default function TabLayout() {
@@ -10,7 +9,8 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: theme.colors.primary,
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: false,
+        tabBarStyle: { display: 'none' }
       }}>
       <Tabs.Screen
         name="index"

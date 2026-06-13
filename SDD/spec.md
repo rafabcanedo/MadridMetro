@@ -28,11 +28,11 @@ All 4 neighbor screens participate in the swipe animation. Each neighbor screen 
 
 ### How it works
 
-- All adjacent screens are rendered (or lazily mounted) simultaneously in an `Animated.View` container
-- A `Pan` gesture detects swipe direction and velocity
-- `react-native-reanimated` v4 translates the container to the target screen with a spring animation
+- All adjacent screens are rendered simultaneously in an `Animated.View` container
+- A `PanResponder` detects swipe direction and velocity on release — the screen stays fixed during the drag
+- On release, `Animated.spring` translates the container to the target screen
 - The gesture snaps to the nearest valid screen position
-- Invalid directions (no screen mapped) cancel the gesture and snap back
+- Invalid directions (no screen mapped) cancel the gesture and snap back to current position
 
 ### Navigation labels
 
@@ -40,9 +40,8 @@ The labels of all 4 neighbor screens are always visible at the edges of the Home
 
 ### Tech stack
 
-- `react-native-reanimated` v4 (already installed)
-- `react-native-gesture-handler` (to install)
-- Custom `GestureNavigator` component — lives inside `src/app/(tabs)/index.tsx`
+- `Animated` + `PanResponder` do React Native (built-in, sem dependências externas)
+- Custom `GestureNavigator` component — `src/components/GestureNavigator.tsx`
 
 ### Tabs preservation
 

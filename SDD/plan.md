@@ -7,12 +7,11 @@ Ordem de implementação baseada em dependências: tema e primitivos primeiro, n
 ## Step 1 — Install dependencies
 
 ```bash
-npx expo install react-native-gesture-handler
 npx expo install @expo-google-fonts/space-grotesk
 ```
 
-- `react-native-gesture-handler` — Pan gesture para o navegador espacial
 - `@expo-google-fonts/space-grotesk` — fonte display (já temos Roboto via `@expo-google-fonts/roboto`)
+- `Animated` e `PanResponder` são built-in do React Native — nenhuma instalação necessária
 
 ---
 
@@ -48,7 +47,6 @@ Arquivo: `src/app/_layout.tsx`
 - Importar `useFonts` de `expo-font`
 - Importar os pesos usados de `@expo-google-fonts/roboto` e `@expo-google-fonts/space-grotesk`
 - Manter `SplashScreen.preventAutoHideAsync()` até fontes carregadas
-- Envolver o app com `GestureHandlerRootView` (requerido pelo `react-native-gesture-handler`)
 
 ```tsx
 const [loaded] = useFonts({
@@ -125,7 +123,7 @@ Usado em: `src/app/(tabs)/index.tsx`
 
 ### Grid
 
-5 posições fixas em coordenadas de tela. O container `Animated.View` tem largura `5 * screenWidth` e altura `3 * screenHeight`, posicionando cada screen na célula correta:
+5 posições fixas em coordenadas de tela. O container `Animated.View` tem largura `3 * screenWidth` e altura `3 * screenHeight`, posicionando cada screen na célula correta:
 
 ```
 col:  -1        0         +1
@@ -137,15 +135,19 @@ row +1:      [Routes]
 ### Estado
 
 ```ts
-const position = useSharedValue({ x: 0, y: 0 }) // posição atual em unidades de grid
+const col = useRef(0)                          // posição atual na grade (coluna)
+const row = useRef(0)                          // posição atual na grade (linha)
+const pan = useRef(new Animated.ValueXY({ x: -W, y: -H })).current  // posição do container
 ```
 
 ### Gesture
 
-- `Gesture.Pan()` de `react-native-gesture-handler`
-- No `onEnd`: determinar direção dominante (horizontal vs vertical), snap para a posição válida mais próxima
-- Se a direção não tem screen mapeada: cancelar e snap de volta à posição atual
-- Animação: `withSpring` via `react-native-reanimated` v4
+- `PanResponder` do React Native (built-in)
+- A tela permanece **fixa durante o arrasto** — não segue o dedo
+- No `onPanResponderRelease`: determinar direção dominante (horizontal vs vertical) pelo `dx`/`dy` e velocidade `vx`/`vy`
+- Se atingir `SWIPE_THRESHOLD` (50px) ou `VELOCITY_THRESHOLD` (0.5 px/ms): navegar para a próxima posição
+- Se a direção não tem screen mapeada: snap de volta à posição atual
+- Animação: `Animated.spring` com `damping: 20`, `stiffness: 200`, `useNativeDriver: true`
 
 ### Navigation labels
 
