@@ -6,4 +6,5 @@ export const colors = {
   details: '#393E46',
   positive: '#9EEA6C',
   blue: '#3b5998',
+  subtitle: '#9A9A9A',
 };

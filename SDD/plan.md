@@ -4,7 +4,7 @@ Ordem de implementação baseada em dependências: tema e primitivos primeiro, n
 
 ---
 
-## Step 1 — Install dependencies
+## Step 1 — Install dependencies ✓
 
 ```bash
 npx expo install @expo-google-fonts/space-grotesk
@@ -17,11 +17,22 @@ npx expo install @expo-google-fonts/space-grotesk
 
 ## Step 2 — theme/colors.ts ✓
 
-Cores já definidas em `src/theme/colors.ts`. Nenhuma alteração necessária.
+Cores definidas em `src/theme/colors.ts` com os seguintes tokens:
+
+| Token      | Value     |
+|------------|-----------|
+| `primary`  | `#222831` |
+| `background`| `#FFFFFF`|
+| `hover`    | `#393E46` |
+| `details`  | `#393E46` |
+| `subtitle` | `#9A9A9A` |
+| `positive` | `#9EEA6C` |
+| `shadow`   | `#000000` |
+| `blue`     | `#3b5998` |
 
 ---
 
-## Step 3 — Update theme/font-family.ts
+## Step 3 — Update theme/font-family.ts ✓
 
 Adicionar Space Grotesk como família `display` ao lado do Roboto (`sans`):
 
@@ -40,7 +51,7 @@ export const fontFamily = {
 
 ---
 
-## Step 4 — Load fonts in root layout
+## Step 4 — Load fonts in root layout ✓
 
 Arquivo: `src/app/_layout.tsx`
 
@@ -59,7 +70,7 @@ const [loaded] = useFonts({
 
 ---
 
-## Step 5 — Create Text component
+## Step 5 — Create Text component ✓
 
 Arquivo: `src/components/Text.tsx`
 
@@ -77,7 +88,7 @@ Cores: `foreground` por default. Sem props de estilo expostas.
 
 ---
 
-## Step 6 — Create Header component
+## Step 6 — Create Header component ✓
 
 Arquivo: `src/components/Header.tsx`
 
@@ -97,7 +108,7 @@ Usa o componente `Text` internamente (`variant="heading"`).
 
 ---
 
-## Step 7 — Secondary screens
+## Step 7 — Secondary screens ✓
 
 Quatro screens internas ao `GestureNavigator` (não são arquivos de rota separados):
 - `InfoScreen`
@@ -116,7 +127,7 @@ Cada uma: `Header` com `title` e `direction` correspondente + `Text` centralizad
 
 ---
 
-## Step 8 — GestureNavigator
+## Step 8 — GestureNavigator ✓
 
 Arquivo: `src/components/GestureNavigator.tsx`  
 Usado em: `src/app/(tabs)/index.tsx`
@@ -159,14 +170,14 @@ Quatro `Text` com `variant="label"` posicionados nas bordas do Home (não animad
 
 ---
 
-## Step 9 — Home screen content
+## Step 9 — Home screen content ✓
 
 `HomeScreen` dentro do `GestureNavigator`: logo do Madrid Metro centralizado.
-Asset disponível em `src/assets/metro.png`.
+Assets: `src/assets/logo.png` (logo principal) e `src/assets/comunidadmadrid.png` (logo Comunidad de Madrid com label abaixo).
 
 ---
 
-## Step 10 — Create Button component
+## Step 10 — Create Button component ✓
 
 Arquivo: `src/components/Button.tsx`
 
@@ -191,7 +202,7 @@ Usa o componente `Text` internamente (`variant="label"`).
 
 ---
 
-## Step 11 — Create TextField component
+## Step 11 — Create TextField component ✓
 
 Arquivo: `src/components/TextField.tsx`
 
@@ -205,3 +216,83 @@ Arquivo: `src/components/TextField.tsx`
 | `dropdown` | `placeholder`, `value`, `onSelect`, `items` (array — definido por screen) |
 
 O modo `dropdown` abre uma lista selecionável abaixo do input (não é native picker). Selecionar um item fecha a lista automaticamente. `items` são definidos por screen quando o conteúdo for especificado.
+
+---
+
+## Step 12 — MapsScreen content
+
+Arquivo: `src/components/MapsScreen.tsx`
+
+`Header` com `title="Maps"` e `direction="left"` já presente. Adicionar abaixo do header um `View` em coluna com `gap: 4` contendo dois `Button`:
+
+| label         | variant     | size    |
+|---------------|-------------|---------|
+| `"Metro Map"` | `secondary` | `wide`  |
+| `"Turism Map"`| `secondary` | `wide`  |
+
+O container dos botões recebe `paddingHorizontal` para controlar o espaço lateral (comportamento padrão do `size="wide"`). `onPress` a definir quando a navegação/conteúdo dos mapas for especificado.
+
+---
+
+## Step 13 — Refactor: gesture screens → `src/gesture/`
+
+Mover todas as gesture screens de `src/components/` para `src/gesture/`, convertendo arquivos planos em pastas com `index.tsx`:
+
+| De | Para |
+|----|------|
+| `src/components/HomeScreen.tsx` | `src/gesture/HomeScreen/index.tsx` |
+| `src/components/InfoScreen.tsx` | `src/gesture/InfoScreen/index.tsx` |
+| `src/components/MapsScreen.tsx` | `src/gesture/MapsScreen/index.tsx` |
+| `src/components/MyStationsScreen.tsx` | `src/gesture/MyStationsScreen/index.tsx` |
+| `src/components/RoutesScreen.tsx` | `src/gesture/RoutesScreen/index.tsx` |
+
+Atualizar imports no `GestureNavigator`. Primitivos compartilhados (Text, Button, Header, TextField, GestureNavigator) permanecem em `src/components/`.
+
+---
+
+## Step 14 — Install material top tabs dependencies
+
+```bash
+npx expo install @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view
+```
+
+---
+
+## Step 15 — CardStations component
+
+Arquivo: `src/gesture/MyStationsScreen/components/CardStation/index.tsx`
+
+Card que representa uma estação favorita.
+
+> **TODO:** definir props e visual com o usuário.
+
+---
+
+## Step 16 — MyStationsScreen content
+
+Arquivo: `src/gesture/MyStationsScreen/index.tsx`
+
+`Header` com `title="My Stations"` e `direction="right"`. Abaixo do header, top tab navigator com duas tabs usando `createMaterialTopTabNavigator` e custom tab bar.
+
+### Tabs
+
+| Tab | Conteúdo |
+|-----|----------|
+| `My Stations` | `FlatList` de `CardStation` com favoritos. Se vazia, exibe `EmptyFavorites` |
+| `Stations` | `FlatList` com todas as estações. A definir. |
+
+### Componentes locais
+
+Pasta: `src/gesture/MyStationsScreen/components/`
+
+#### EmptyFavorites
+
+Exibido na tab "My Stations" quando não há favoritos.
+
+Mensagem: `"Tu lista de favoritos está vacía, marca tu estación favorita"`
+
+Props, layout e tipografia a definir.
+
+#### TopTabBar
+
+Custom tab bar passada via prop `tabBar` do `Tab.Navigator`. Ícones via `lucide-react-native`. Visual e ícones a definir.

@@ -13,7 +13,7 @@ export function TextField(props: TextFieldProps) {
     return (
       <View>
         <Pressable style={styles.input} onPress={() => setOpen(prev => !prev)}>
-          <Text variant="body" style={{ color: selected ? theme.colors.background : theme.colors.hover }}>
+          <Text variant="body" style={{ color: selected ? theme.colors.background : theme.colors.subtitle }}>
             {selected ? selected.label : (props.placeholder ?? '')}
           </Text>
         </Pressable>
@@ -41,7 +41,7 @@ export function TextField(props: TextFieldProps) {
     <TextInput
       style={styles.input}
       placeholder={props.placeholder}
-      placeholderTextColor={theme.colors.hover}
+      placeholderTextColor={theme.colors.subtitle}
       value={props.value}
       onChangeText={props.onChangeText}
       secureTextEntry={props.secureTextEntry}
