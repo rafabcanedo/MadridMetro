@@ -258,17 +258,102 @@ npx expo install @react-navigation/material-top-tabs react-native-tab-view react
 
 ---
 
-## Step 15 — CardStations component
+## Step 15 — Card component
 
-Arquivo: `src/gesture/MyStationsScreen/components/CardStation/index.tsx`
+Arquivo: `src/components/Card/index.tsx`
 
-Card que representa uma estação favorita.
+Componente dinâmico reutilizável para os dois contextos da `MyStationsScreen`.
 
-> **TODO:** definir props e visual com o usuário.
+**Props base:**
+
+| Prop | Tipo | Descrição |
+|------|------|-----------|
+| `variant` | `"station" \| "line"` | Define o tipo de conteúdo renderizado |
+| `size` | `"sm" \| "md"` | Tamanho do card. Padrão: `"md"` |
+| `onPress` | `() => void` | Callback de toque |
+
+**Props — `variant="line"` (card de categoria):**
+
+| Prop | Tipo |
+|------|------|
+| `lineId` | `string` |
+| `lineNumber` | `number` |
+| `lineColor` | `string` |
+| `lineName` | `string` |
+
+Exibe: cor da linha, número, nome e ícone de seta (indica navegação para lista de estações).
+
+**Props — `variant="station"` (card de estação favorita):**
+
+| Prop | Tipo |
+|------|------|
+| `stationName` | `string` |
+| `lineNumber` | `number` |
+| `lineColor` | `string` |
+| `lineName` | `string` |
+| `isFavorited` | `boolean` |
+| `onUnfavorite` | `() => void` |
+
+Exibe: nome da estação, tempo de espera fictício e ícone `star` preenchido amarelo. Ao pressionar a estrela, chama `onUnfavorite` e o card é removido da `FlatList`.
 
 ---
 
-## Step 16 — MyStationsScreen content
+## Step 16 — my-stations Stack navigation
+
+Estrutura de arquivos para suportar navegação Stack a partir da tab "Stations":
+
+```
+app/(tabs)/my-stations/
+  _layout.tsx          ← Stack layout
+  index.tsx            ← tela principal (MyStationsScreen com top tabs)
+  [lineId]/
+    index.tsx          ← lista de estações da linha (StationsListScreen)
+```
+
+**`_layout.tsx`:**
+
+```tsx
+import { Stack } from 'expo-router';
+
+export default function MyStationsLayout() {
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="[lineId]/index" options={{ headerShown: false }} />
+    </Stack>
+  );
+}
+```
+
+Navegação do `Card` (`variant="line"`) ao pressionar:
+
+```tsx
+router.push({
+  pathname: '/my-stations/[lineId]',
+  params: { lineId: '1', lineColor: '#003399', lineName: 'Línea 1' },
+})
+```
+
+---
+
+## Step 17 — StationsListScreen
+
+Arquivo: `app/(tabs)/my-stations/[lineId]/index.tsx`
+
+Tela exibida ao selecionar uma linha na tab "Stations". Recebe `lineId`, `lineColor` e `lineName` via `useLocalSearchParams`.
+
+Renderiza um `FlatList` simples com as estações daquela linha. Cada item da lista exibe o nome da estação e um ícone `star` (Lucide) para favoritar:
+
+| Estado da estrela | Visual | Ação ao pressionar |
+|---|---|---|
+| Não favoritada | outline (padrão) | Favorita → fill amarelo → estação aparece na tab "My Stations" |
+| Favoritada | fill amarelo | Desfavorita → volta para outline → remove da tab "My Stations" |
+
+O estado de favoritos é compartilhado — a estrela reflete o mesmo estado em ambas as telas. Gerenciamento de estado a definir em step dedicado.
+
+---
+
+## Step 18 — MyStationsScreen content
 
 Arquivo: `src/gesture/MyStationsScreen/index.tsx`
 
@@ -278,8 +363,8 @@ Arquivo: `src/gesture/MyStationsScreen/index.tsx`
 
 | Tab | Conteúdo |
 |-----|----------|
-| `My Stations` | `FlatList` de `CardStation` com favoritos. Se vazia, exibe `EmptyFavorites` |
-| `Stations` | `FlatList` com todas as estações. A definir. |
+| `My Stations` | `FlatList` de `Card` (`variant="station"`) com favoritos. Se vazia, exibe `EmptyFavorites` |
+| `Stations` | `FlatList` de `Card` (`variant="line"`) com as 13 linhas do metro. Ao pressionar, navega via Stack para `[lineId]` |
 
 ### Componentes locais
 

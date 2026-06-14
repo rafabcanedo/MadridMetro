@@ -2,11 +2,11 @@ import { useRef } from 'react';
 import { Animated, Dimensions, PanResponder, StyleSheet, View } from 'react-native';
 
 import { theme } from '@/theme';
-import { HomeScreen } from '@/components/HomeScreen';
-import { InfoScreen } from '@/components/InfoScreen';
-import { MapsScreen } from '@/components/MapsScreen';
-import { MyStationsScreen } from '@/components/MyStationsScreen';
-import { RoutesScreen } from '@/components/RoutesScreen';
+import { HomeScreen } from '@/gesture/HomeScreen';
+import { InfoScreen } from '@/gesture/InfoScreen';
+import { MapsScreen } from '@/gesture/MapsScreen';
+import { MyStationsScreen } from '@/gesture/MyStationsScreen';
+import { RoutesScreen } from '@/gesture/RoutesScreen';
 
 const { width: W, height: H } = Dimensions.get('window');
 

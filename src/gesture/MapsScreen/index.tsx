@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { Header } from '@/components/Header';
-import { Text } from '@/components/Text';
+import { Button } from '@/components/Button';
 import { theme } from '@/theme';
 
 export function MapsScreen() {
@@ -8,7 +8,8 @@ export function MapsScreen() {
     <View style={styles.container}>
       <Header title="Maps" direction="left" />
       <View style={styles.content}>
-        <Text variant="heading">Maps</Text>
+        <Button label="Metro Map" variant="secondary" size="wide" />
+        <Button label="Turism Map" variant="secondary" size="wide" />
       </View>
     </View>
   );
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: 24,
+    gap: 12,
   },
 });
