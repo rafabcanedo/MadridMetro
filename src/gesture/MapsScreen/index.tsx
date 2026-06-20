@@ -8,8 +8,8 @@ export function MapsScreen() {
     <View style={styles.container}>
       <Header title="Maps" direction="left" />
       <View style={styles.content}>
-        <Button label="Metro Map" variant="secondary" size="wide" />
-        <Button label="Turism Map" variant="secondary" size="wide" />
+        <Button label="Metro Map" variant="secondary" size="wide" colorScheme="light" />
+        <Button label="Turism Map" variant="secondary" size="wide" colorScheme="light" />
       </View>
     </View>
   );
@@ -18,7 +18,7 @@ export function MapsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.lightTheme.background,
   },
   content: {
     flex: 1,

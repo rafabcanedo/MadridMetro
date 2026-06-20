@@ -8,7 +8,7 @@ export function RoutesScreen() {
     <View style={styles.container}>
       <Header title="Routes" direction="down" />
       <View style={styles.content}>
-        <Text variant="heading">Routes</Text>
+        <Text variant="heading" style={{ color: theme.lightTheme.foreground }}>Routes</Text>
       </View>
     </View>
   );
@@ -17,7 +17,7 @@ export function RoutesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.lightTheme.background,
   },
   content: {
     flex: 1,

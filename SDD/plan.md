@@ -219,7 +219,25 @@ O modo `dropdown` abre uma lista selecionável abaixo do input (não é native p
 
 ---
 
-## Step 12 — MapsScreen content
+## Step 11.5 — Dark/Light theme ✓
+
+Adicionado sistema de temas em `src/theme/colors.ts`:
+
+```ts
+export const darkTheme = { background: '#222831', foreground: '#FFFFFF' }
+export const lightTheme = { background: '#FFFFFF', foreground: '#222831' }
+```
+
+Exportados via `theme` em `src/theme/index.ts`.
+
+- **HomeScreen + GestureNavigator** → `darkTheme` (sem alteração)
+- **Screens secundárias** (Info, Routes, Maps, MyStations) → `lightTheme` (fundo branco, texto escuro)
+- **Header** → usa `lightTheme.foreground` (só aparece em screens secundárias)
+- **Button** → recebeu prop `colorScheme?: 'dark' | 'light'` (default `'dark'`). Cores calculadas em runtime via `getVariantStyle` / `getTextColor`. `secondary` em `light` usa estilo outlined.
+
+---
+
+## Step 12 — MapsScreen content ✓
 
 Arquivo: `src/components/MapsScreen.tsx`
 
@@ -234,7 +252,7 @@ O container dos botões recebe `paddingHorizontal` para controlar o espaço late
 
 ---
 
-## Step 13 — Refactor: gesture screens → `src/gesture/`
+## Step 13 — Refactor: gesture screens → `src/gesture/` ✓
 
 Mover todas as gesture screens de `src/components/` para `src/gesture/`, convertendo arquivos planos em pastas com `index.tsx`:
 
@@ -250,7 +268,7 @@ Atualizar imports no `GestureNavigator`. Primitivos compartilhados (Text, Button
 
 ---
 
-## Step 14 — Install material top tabs dependencies
+## Step 14 — Install material top tabs dependencies ✓
 
 ```bash
 npx expo install @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view
@@ -258,7 +276,7 @@ npx expo install @react-navigation/material-top-tabs react-native-tab-view react
 
 ---
 
-## Step 15 — Card component
+## Step 15 — Card component ✓
 
 Arquivo: `src/components/Card/index.tsx`
 

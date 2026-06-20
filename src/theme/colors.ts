@@ -7,4 +7,15 @@ export const colors = {
   positive: '#9EEA6C',
   blue: '#3b5998',
   subtitle: '#9A9A9A',
+  yellow: '#ffc93c',
+};
+
+export const darkTheme = {
+  background: '#222831',
+  foreground: '#FFFFFF',
+};
+
+export const lightTheme = {
+  background: '#FFFFFF',
+  foreground: '#222831',
 };

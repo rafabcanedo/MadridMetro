@@ -8,7 +8,7 @@ export function InfoScreen() {
     <View style={styles.container}>
       <Header title="Info" direction="up" />
       <View style={styles.content}>
-        <Text variant="heading">Info</Text>
+        <Text variant="heading" style={{ color: theme.lightTheme.foreground }}>Info</Text>
       </View>
     </View>
   );
@@ -17,7 +17,7 @@ export function InfoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.lightTheme.background,
   },
   content: {
     flex: 1,

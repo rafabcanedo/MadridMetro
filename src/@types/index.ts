@@ -24,14 +24,41 @@ export interface ExternalLinkProps
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'default' | 'wide';
+export type ColorScheme = 'dark' | 'light';
 
 export type ButtonProps = {
   label: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  colorScheme?: ColorScheme;
   onPress?: () => void;
   disabled?: boolean;
 };
+
+export type CardSize = 'sm' | 'md';
+
+export type CardLineProps = {
+  variant: 'line';
+  size?: CardSize;
+  lineId: string;
+  lineNumber: number;
+  lineColor: string;
+  lineName: string;
+  onPress: () => void;
+};
+
+export type CardStationProps = {
+  variant: 'station';
+  size?: CardSize;
+  stationName: string;
+  lineNumber: number;
+  lineColor: string;
+  lineName: string;
+  isFavorited: boolean;
+  onUnfavorite: () => void;
+};
+
+export type CardProps = CardLineProps | CardStationProps;
 
 export type TextFieldMode = 'normal' | 'dropdown';
 
