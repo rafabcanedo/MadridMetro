@@ -399,3 +399,122 @@ Props, layout e tipografia a definir.
 #### TopTabBar
 
 Custom tab bar passada via prop `tabBar` do `Tab.Navigator`. Ícones via `lucide-react-native`. Visual e ícones a definir.
+
+---
+
+## Step 19 — MapViewer screen ✓
+
+Tela fullscreen modal para visualização dos mapas estáticos. Rota raiz, fora de `(tabs)`.
+
+### Arquivos alterados
+
+| Arquivo | Ação |
+|---------|------|
+| `src/app/_layout.tsx` | Registrar rota `map-viewer` na Stack raiz |
+| `src/app/map-viewer.tsx` | Criar tela de visualização |
+| `src/gesture/MapsScreen/index.tsx` | Adicionar `onPress` nos dois botões |
+
+### `src/app/_layout.tsx`
+
+Adicionar dentro do `<Stack>`:
+
+```tsx
+<Stack.Screen
+  name="map-viewer"
+  options={{ headerShown: false, presentation: 'fullScreenModal' }}
+/>
+```
+
+### `src/app/map-viewer.tsx` (novo)
+
+```tsx
+import { View, Image, Pressable, StyleSheet } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { X } from 'lucide-react-native';
+import { theme } from '@/theme';
+
+const MAPS = {
+  metro: require('@/assets/metro.png'),
+  turism: require('@/assets/turism.png'),
+} as const;
+
+export default function MapViewer() {
+  const { type } = useLocalSearchParams<{ type: keyof typeof MAPS }>();
+  const router = useRouter();
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+      <Pressable onPress={() => router.back()} style={styles.close} hitSlop={8}>
+        <X size={24} color={theme.lightTheme.foreground} />
+      </Pressable>
+      <Image
+        source={MAPS[type] ?? MAPS.metro}
+        style={styles.image}
+        resizeMode="contain"
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.lightTheme.background,
+  },
+  close: {
+    alignSelf: 'flex-end',
+    padding: 16,
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+  },
+});
+```
+
+### `src/gesture/MapsScreen/index.tsx`
+
+Adicionar `useRouter` e `onPress` nos botões:
+
+```tsx
+const router = useRouter();
+
+// Metro Map button
+onPress={() => router.push({ pathname: '/map-viewer' as any, params: { type: 'metro' } })}
+
+// Turism Map button
+onPress={() => router.push({ pathname: '/map-viewer' as any, params: { type: 'turism' } })}
+```
+
+---
+
+## Step 20 — Button secondary+light visual fix ✓
+
+Arquivo: `src/components/Button/index.tsx`
+
+O `secondary` em `colorScheme="light"` hoje retorna fundo transparente com borda — presença visual insuficiente. Alterar para fundo escuro (`#222831`) com texto branco, espelhando o comportamento do `secondary` em `dark`.
+
+**Alterar em `getVariantStyle`:**
+
+```ts
+case 'secondary':
+  return colorScheme === 'dark'
+    ? { backgroundColor: t.background, borderRadius: 100 }
+    : { backgroundColor: theme.colors.hover, borderRadius: 100 }; // era: transparent + border
+```
+
+O `getTextColor` para `secondary` já retorna `t.foreground` — mas em `light`, `t.foreground` é `#222831` (escuro). Precisa forçar branco:
+
+```ts
+function getTextColor(variant: ButtonVariant, colorScheme: ColorScheme): string {
+  if (variant === 'primary') {
+    const t = colorScheme === 'dark' ? theme.darkTheme : theme.lightTheme;
+    return t.background;
+  }
+  if (variant === 'secondary') return '#FFFFFF';
+  const t = colorScheme === 'dark' ? theme.darkTheme : theme.lightTheme;
+  return t.foreground;
+}
+```

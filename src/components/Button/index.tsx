@@ -12,15 +12,20 @@ function getVariantStyle(variant: ButtonVariant, colorScheme: ColorScheme): View
     case 'secondary':
       return colorScheme === 'dark'
         ? { backgroundColor: t.background, borderRadius: 100 }
-        : { backgroundColor: 'transparent', borderRadius: 100, borderWidth: 1, borderColor: t.foreground };
+        : { backgroundColor: theme.colors.hover, borderRadius: 100 };
     case 'ghost':
       return { backgroundColor: 'transparent', borderRadius: 100 };
   }
 }
 
 function getTextColor(variant: ButtonVariant, colorScheme: ColorScheme): string {
+  if (variant === 'primary') {
+    const t = colorScheme === 'dark' ? theme.darkTheme : theme.lightTheme;
+    return t.background;
+  }
+  if (variant === 'secondary') return '#FFFFFF';
   const t = colorScheme === 'dark' ? theme.darkTheme : theme.lightTheme;
-  return variant === 'primary' ? t.background : t.foreground;
+  return t.foreground;
 }
 
 export function Button({ label, variant = 'primary', size = 'default', colorScheme = 'dark', onPress, disabled }: ButtonProps) {

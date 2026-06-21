@@ -124,9 +124,16 @@ O `direction` é mapeado para a seta correspondente: `up → ↓`, `down → ↑
 A pressable action element with visual variants to communicate intent.
 
 **Color variants:**
-- `primary` — background `foreground` (#FFFFFF), text `background` (#111111)
-- `secondary` — background `surface` (#222831), text `foreground` (#FFFFFF)
-- `ghost` — transparent background, text `foreground` (#FFFFFF)
+
+O comportamento de cada variante muda conforme o `colorScheme` da tela onde está inserido.
+
+| Variant | `colorScheme="dark"` | `colorScheme="light"` |
+|---------|----------------------|-----------------------|
+| `primary` | bg `#FFFFFF`, texto `#222831` | bg `#FFFFFF`, texto `#222831` |
+| `secondary` | bg `#222831`, texto `#FFFFFF` | bg `#393E46`, texto `#FFFFFF` |
+| `ghost` | transparente, texto `#FFFFFF` | transparente, texto `#222831` |
+
+O `secondary` em `colorScheme="light"` usa fundo escuro (`#222831`) com texto branco — inversão intencional para criar contraste máximo sobre telas com fundo claro (ex: `MapsScreen`). Anteriormente era transparente com borda, o que resultava em presença visual insuficiente.
 
 **Size variants:**
 - `default` — width by content + horizontal padding (pill shape)
@@ -235,6 +242,50 @@ Barra inferior:
 | R | Ramal | `#1E88E5` (azul — ramal da L1) |
 
 > Cores aproximadas para uso em desenvolvimento. Validar com a paleta oficial da EMT/Madrid Metro antes do release.
+
+---
+
+### Maps
+
+A tela de mapas expõe dois pontos de entrada para visualização de mapas estáticos em tela cheia.
+
+**Botões:**
+- `"Metro Map"` — abre o mapa esquemático completo do metrô de Madrid
+- `"Turism Map"` — abre o mapa turístico com pontos de interesse sobrepostos às linhas de metrô
+
+Ao pressionar qualquer botão, o app navega para o `MapViewer` como modal fullscreen, sobrepondo o GestureNavigator inteiro. A `MapsScreen` permanece no gesture — não é extraída para rota.
+
+---
+
+### MapViewer
+
+Tela de visualização de mapa em tela cheia. Abre como `fullScreenModal` sobre qualquer screen do GestureNavigator via navegação da Stack raiz.
+
+**Layout:**
+
+```
+┌──────────────────────────────────┐
+│                             [X]  │  ← botão fechar, canto sup. direito
+│                                  │
+│                                  │
+│          [imagem do mapa]        │  ← resizeMode="contain"
+│                                  │
+│                                  │
+└──────────────────────────────────┘
+```
+
+**Conteúdo:**
+- Botão de fechar (ícone `X`, Lucide) — `router.back()` para a `MapsScreen`
+- Imagem do mapa centralizada, `resizeMode="contain"` para preservar proporções
+
+**Mapas disponíveis:**
+
+| Tipo | Asset |
+|------|-------|
+| `metro` | `src/assets/metro.png` — mapa esquemático das 13 linhas |
+| `turism` | `src/assets/turism.png` — mapa turístico com pontos de interesse |
+
+**Routing:** rota `/map-viewer` no nível da Stack raiz, fora de `(tabs)`. Recebe param `type: 'metro' | 'turism'`.
 
 ---
 

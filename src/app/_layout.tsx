@@ -46,6 +46,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="map-viewer" options={{ headerShown: false, presentation: 'fullScreenModal' }} />
       </Stack>
     </FavoritesProvider>
   );
