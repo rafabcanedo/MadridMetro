@@ -316,7 +316,7 @@ Exibe: nome da estação, tempo de espera fictício e ícone `star` preenchido a
 
 ---
 
-## Step 16 — my-stations Stack navigation
+## Step 16 — my-stations Stack navigation ✓
 
 Estrutura de arquivos para suportar navegação Stack a partir da tab "Stations":
 
@@ -354,7 +354,7 @@ router.push({
 
 ---
 
-## Step 17 — StationsListScreen
+## Step 17 — StationsListScreen ✓
 
 Arquivo: `app/(tabs)/my-stations/[lineId]/index.tsx`
 
@@ -371,7 +371,7 @@ O estado de favoritos é compartilhado — a estrela reflete o mesmo estado em a
 
 ---
 
-## Step 18 — MyStationsScreen content
+## Step 18 — MyStationsScreen content ✓
 
 Arquivo: `src/gesture/MyStationsScreen/index.tsx`
 

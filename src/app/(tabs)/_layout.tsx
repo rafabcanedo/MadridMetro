@@ -52,6 +52,10 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="my-stations"
+        options={{ headerShown: false }}
+      />
     </Tabs>
   );
 }
